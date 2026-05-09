@@ -120,7 +120,7 @@
             </div>
         </header>
 
-        <!-- 新增：如何開始流程區塊 -->
+        <!-- 如何開始流程區塊 -->
         <section class="mb-16 bg-white p-8 rounded-xl shadow-md border-t-8 border-secondary">
             <h2 class="text-3xl font-bold mb-8 text-center text-secondary"><i class="fa-solid fa-shoe-prints mr-2"></i>如何開始：第一步怎麼使用</h2>
             <div class="grid md:grid-cols-3 gap-8 relative">
@@ -176,6 +176,8 @@
 
         <!-- 模組化案例展示 -->
         <h2 class="text-3xl font-bold border-b-2 border-primary pb-2 mb-8"><i class="fa-solid fa-layer-group mr-2"></i>模組化案例展示</h2>
+        
+        <!-- 案例一：共響洗手台系統 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col md:flex-row">
             <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="浴室空間" class="md:w-1/3 object-cover h-64 md:h-auto">
             <div class="p-8 md:w-2/3">
@@ -210,6 +212,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- 模組化案例展示二：成長型多功能嬰兒床 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col md:flex-row border-t-4 border-secondary">
+            <img src="image_920b75.jpg" alt="成長型多功能嬰兒床" class="md:w-1/3 object-cover h-64 md:h-auto">
+            <div class="p-8 md:w-2/3">
+                <span class="bg-secondary text-dark font-bold px-3 py-1 rounded-full text-sm">延伸案例</span>
+                <h3 class="text-2xl font-bold mt-3 mb-2 text-dark">0~12+歲「成長型多功能嬰兒床」</h3>
+                <p class="text-gray-600 mb-4">從新生兒的安全包覆、幼童期的探索學習（結合多種感官探索牆），到學齡期的專屬沙發閱讀區。當孩子長大不再需要床鋪時，床體更可完全拆解，無縫重組為「成長紀錄牆」、「書架展示架」與「玩具收納箱」，徹底實踐零浪費的永續價值。</p>
+                <div class="mt-6 bg-light p-4 rounded-lg">
+                    <h4 class="font-bold text-center mb-4"><i class="fa-solid fa-chart-pie mr-2"></i>12 年以上生命週期成本對比</h4>
+                    <div class="flex flex-col lg:flex-row gap-6">
+                        <div class="w-full lg:w-1/2">
+                            <canvas id="costChartCrib" width="400" height="250"></canvas>
+                        </div>
+                        <div class="w-full lg:w-1/2 overflow-x-auto">
+                            <table class="min-w-full text-xs text-left bg-white rounded">
+                                <thead class="bg-gray-200 text-gray-700">
+                                    <tr>
+                                        <th class="p-2">發展階段</th>
+                                        <th class="p-2 text-red-600">傳統替換模式</th>
+                                        <th class="p-2 text-primary">多功能成長系統</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b"><td class="p-2 font-bold">0~2歲 (睡眠期)</td><td class="p-2">$6,000 (一般嬰兒床)</td><td class="p-2">$18,000</td></tr>
+                                    <tr class="border-b"><td class="p-2 font-bold">2~8歲 (探索/學習)</td><td class="p-2">+$8,000 (換兒童床)</td><td class="p-2">$0 (轉為開放式/加裝感官牆)</td></tr>
+                                    <tr class="border-b"><td class="p-2 font-bold">8~12歲 (成長期)</td><td class="p-2">+$12,000 (單人床/沙發)</td><td class="p-2">$0 (變身低床沙發)</td></tr>
+                                    <tr><td class="p-2 font-bold">12歲+ (拆解再利用)</td><td class="p-2">+$5,000 (另購書架/收納)</td><td class="p-2">$0 (重組為書架/收納箱)</td></tr>
+                                    <tr class="bg-gray-100 font-bold"><td class="p-2">總計累積花費</td><td class="p-2 text-red-600">約 $31,000</td><td class="p-2 text-primary">約 $18,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- MAIN: 客戶端 (需登入) - 提出需求 -->
@@ -663,7 +702,7 @@
             else if (role === 'client') window.showSection('client-projects');
             else window.showSection('home');
 
-            // 繪製 Chart.js
+            // 繪製 Chart.js (洗手台案例)
             const ctx = document.getElementById('costChart');
             if(ctx) {
                 new Chart(ctx.getContext('2d'), {
@@ -673,6 +712,24 @@
                         datasets: [
                             { label: '快消模式', data: [3000, 9000, 19000, 21000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
                             { label: '模組化系統', data: [10000, 10000, 12000, 12000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // 繪製第二個 Chart.js (嬰兒床案例)
+            const ctxCrib = document.getElementById('costChartCrib');
+            if(ctxCrib) {
+                new Chart(ctxCrib.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['0~2歲', '2~8歲', '8~12歲', '12歲以上'],
+                        datasets: [
+                            // 傳統模式：花費不斷累加
+                            { label: '傳統替換模式', data: [6000, 14000, 26000, 31000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
+                            // 模組系統：初期投入後不再增加額外費用
+                            { label: '多功能成長系統', data: [18000, 18000, 18000, 18000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false }
