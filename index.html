@@ -1,353 +1,1085 @@
 <!DOCTYPE html>
+
 <html lang="zh-TW">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>發展適配方舟計畫｜幼兒家庭空間成長共創</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     
+
     <script>
+
         tailwind.config = {
+
             theme: {
+
                 extend: {
+
                     colors: {
+
                         primary: '#5C6E58',
+
                         secondary: '#D0A97E',
+
                         dark: '#3A3A3A',
+
                         light: '#F4F1EA',
+
                         accent: '#C86B42'
+
                     }
+
                 }
+
             }
+
         }
+
     </script>
+
     <style>
+
         body { background-color: #F4F1EA; color: #3A3A3A; font-family: 'Noto Sans TC', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+
         main { flex: 1; }
-        .hidden-section { display: none !important; }
-        .designer-subview { display: none; }
-        .designer-subview.active { display: block; }
+
+        .hidden-section { display: none; }
+
         .glass-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(200, 200, 200, 0.3); }
-        aside { transition: all 0.3s ease; }
+
     </style>
+
 </head>
+
 <body class="antialiased">
 
-    <nav class="bg-primary text-white p-4 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-            <h1 class="text-xl font-bold tracking-wider cursor-pointer flex items-center" onclick="window.showSection('home')">
-                <i class="fa-solid fa-seedling mr-2"></i>發展適配方舟計畫
-            </h1>
-            
-            <div id="navMenu" class="flex items-center gap-3">
-                <button onclick="window.showSection('home')" class="hover:text-secondary font-bold px-2 hidden md:block">首頁案例</button>
-                
-                <button id="navClientLoginBtn" onclick="window.openClientModal()" class="bg-secondary text-dark px-4 py-2 rounded font-bold hover:bg-yellow-600 transition">登入 / 註冊</button>
-                <button id="navDesignerLoginBtn" onclick="window.openDesignerModal()" class="border border-white px-4 py-2 rounded hover:bg-white hover:text-primary transition">設計師入口</button>
-                
-                <button id="navClientPortalBtn" onclick="window.showSection('client-portal')" class="hidden bg-secondary text-dark px-4 py-2 rounded font-bold">我要提出需求</button>
-                <button id="navClientProjectsBtn" onclick="window.showSection('client-projects')" class="hidden bg-dark text-white px-4 py-2 rounded font-bold">我的專案</button>
-                
-                <button id="navDesignerPortalBtn" onclick="window.showSection('designer-portal')" class="hidden border border-white px-4 py-2 rounded hover:bg-white hover:text-primary transition">工作站</button>
 
-                <button id="navLogoutBtn" onclick="window.logout()" class="hidden bg-gray-600 px-4 py-2 rounded font-bold"><i class="fa-solid fa-sign-out-alt"></i></button>
+
+    <!-- 導覽列 -->
+
+    <nav class="bg-primary text-white p-4 shadow-md sticky top-0 z-50">
+
+        <div class="max-w-6xl mx-auto flex justify-between items-center relative">
+
+            <h1 class="text-xl font-bold tracking-wider cursor-pointer flex items-center" onclick="window.showSection('home'); window.closeMobileMenu();">
+
+                <i class="fa-solid fa-seedling mr-2"></i>發展適配方舟計畫
+
+            </h1>
+
+            
+
+            <!-- 手機版漢堡選單按鈕 -->
+
+            <button class="md:hidden text-white text-2xl focus:outline-none" onclick="window.toggleMobileMenu()">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+
+            <!-- 導覽列選單 -->
+
+            <div id="navMenu" class="hidden absolute top-full left-0 w-full bg-primary md:static md:w-auto md:flex flex-col md:flex-row items-center gap-3 p-4 md:p-0 shadow-lg md:shadow-none transition-all z-40">
+
+                <button onclick="alert('語言套件建置中：需待工程師建立多國語系 JSON 字典檔後方可啟用。')" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold">
+
+                    <i class="fa-solid fa-globe mr-1"></i>EN / 中
+
+                </button>
+
+                
+
+                <!-- 未登入時顯示的按鈕 -->
+
+                <button id="navClientLoginBtn" onclick="window.openClientModal(); window.closeMobileMenu();" class="w-full md:w-auto bg-secondary text-dark px-4 py-2 rounded font-bold hover:bg-yellow-600 transition">客戶登入 / 註冊</button>
+
+                <button id="navDesignerLoginBtn" onclick="window.openDesignerModal(); window.closeMobileMenu();" class="w-full md:w-auto border border-white px-4 py-2 rounded hover:bg-white hover:text-primary transition">設計師登入</button>
+
+                
+
+                <!-- 登入後顯示的專屬區域按鈕 -->
+
+                <button id="navClientPortalBtn" onclick="window.showSection('client-portal'); window.closeMobileMenu();" class="hidden w-full md:w-auto bg-secondary text-dark px-4 py-2 rounded font-bold hover:bg-yellow-600 transition">我要提出需求</button>
+
+                <button id="navDesignerPortalBtn" onclick="window.showSection('designer-portal'); window.closeMobileMenu();" class="hidden w-full md:w-auto border border-white px-4 py-2 rounded hover:bg-white hover:text-primary transition">設計師工作站</button>
+
+
+
+                <!-- 登出按鈕 -->
+
+                <button id="navLogoutBtn" onclick="window.logout()" class="hidden w-full md:w-auto bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center justify-center">
+
+                    <i class="fa-solid fa-sign-out-alt mr-1"></i>登出
+
+                </button>
+
             </div>
+
         </div>
+
     </nav>
 
-    <main id="home" class="max-w-6xl mx-auto p-6">
-        <header class="text-center py-12 mb-8 bg-cover bg-center rounded-xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1610486827050-681b95b4baeb?auto=format&fit=crop&w=1200&q=80');">
-            <div class="absolute inset-0 bg-dark bg-opacity-60"></div>
-            <div class="relative z-10 text-light px-4">
-                <h2 class="text-4xl font-extrabold mb-4">幼兒家庭空間成長共創訂閱服務</h2>
-                <p class="text-xl">ESG 減量消費 ✕ 機能構築 ✕ 發展適配</p>
+
+
+    <!-- 設計師登入彈跳視窗 -->
+
+    <div id="designerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center hidden">
+
+        <div class="bg-white p-8 rounded-lg shadow-xl w-96 border-t-4 border-primary">
+
+            <h2 class="text-2xl font-bold mb-4 text-primary"><i class="fa-solid fa-compass-drafting mr-2"></i>設計師登入</h2>
+
+            <input type="text" id="designerUsername" placeholder="設計師帳號 (預設: 71101mi)" class="w-full mb-3 p-2 border rounded">
+
+            <input type="password" id="designerPassword" placeholder="密碼 (預設: 5462)" class="w-full mb-4 p-2 border rounded">
+
+            <div class="flex justify-end gap-2">
+
+                <button onclick="window.closeDesignerModal()" class="px-4 py-2 text-gray-500 hover:text-gray-800">取消</button>
+
+                <button onclick="window.attemptDesignerLogin()" class="bg-primary text-white px-4 py-2 rounded hover:bg-green-800">登入</button>
+
             </div>
+
+            <p id="designerLoginError" class="text-red-500 text-sm mt-2 hidden">設計師帳號或密碼錯誤</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 客戶登入與註冊彈跳視窗 -->
+
+    <div id="clientModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center hidden">
+
+        <div class="bg-white p-8 rounded-lg shadow-xl w-96 border-t-4 border-secondary">
+
+            <h2 id="clientModalTitle" class="text-2xl font-bold mb-4 text-secondary"><i class="fa-solid fa-user mr-2"></i>客戶登入</h2>
+
+            
+
+            <input type="text" id="clientUsername" placeholder="客戶帳號" class="w-full mb-3 p-2 border rounded bg-gray-50">
+
+            <input type="password" id="clientPassword" placeholder="密碼" class="w-full mb-4 p-2 border rounded bg-gray-50">
+
+            
+
+            <!-- 註冊專用欄位 (預設隱藏) -->
+
+            <div id="registerFields" class="hidden">
+
+                <input type="password" id="clientConfirmPassword" placeholder="再次確認密碼" class="w-full mb-4 p-2 border rounded bg-gray-50">
+
+            </div>
+
+
+
+            <p id="clientErrorMsg" class="text-red-500 text-sm mb-4 hidden"></p>
+
+            <p id="clientSuccessMsg" class="text-green-600 text-sm mb-4 hidden"></p>
+
+
+
+            <div class="flex justify-between items-center mt-2">
+
+                <button id="toggleAuthModeBtn" onclick="window.toggleClientAuthMode()" class="text-sm text-gray-500 underline hover:text-primary">還沒有帳號？點此註冊</button>
+
+                <div class="flex gap-2">
+
+                    <button onclick="window.closeClientModal()" class="px-4 py-2 text-gray-500 hover:text-gray-800">取消</button>
+
+                    <button id="clientSubmitBtn" onclick="window.submitClientAuth()" class="bg-secondary text-dark font-bold px-4 py-2 rounded hover:bg-yellow-600">登入</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN: 首頁內容 -->
+
+    <main id="home" class="max-w-6xl mx-auto p-6 transition-all duration-300">
+
+        <header class="text-center py-12 mb-8 bg-cover bg-center rounded-xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1610486827050-681b95b4baeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+
+            <div class="absolute inset-0 bg-dark bg-opacity-60"></div>
+
+            <div class="relative z-10 text-light px-4">
+
+                <h2 class="text-4xl font-extrabold mb-4">幼兒家庭空間成長共創訂閱服務</h2>
+
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed">
+
+                    我們不是傳統室內設計師。<br>我們是「幼保 × 建築」的兒童發展空間顧問。
+
+                </p>
+
+            </div>
+
         </header>
 
-        <section class="bg-white p-8 rounded-xl shadow-lg mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-primary border-b pb-2">15 年生命週期成本對比</h3>
-            <div class="h-64 mb-8">
-                <canvas id="costChart"></canvas>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 text-sm">
-                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
-                    <h4 class="font-bold text-red-700 mb-2">衝動消費模式 (快消品)</h4>
-                    <p>隨孩子成長不斷更換塑膠家具、墊高凳，每 3-5 年產生一次廢棄物。總成本：約 $21,000。</p>
-                </div>
-                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-primary">
-                    <h4 class="font-bold text-primary mb-2">正確消費模式 (機能模組)</h4>
-                    <p>一次投資專業結構，隨成長手動升級或重組功能（如轉化為收納架）。總成本：約 $12,000。</p>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <main id="client-portal" class="max-w-4xl mx-auto p-6 hidden-section">
-        <h2 class="text-3xl font-bold mb-6 text-secondary"><i class="fa-solid fa-pen-to-square mr-2"></i>發起空間適配請求</h2>
-        <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary">
-            <form id="clientForm">
-                <div class="mb-4">
-                    <label class="block font-bold mb-2">上傳場地照片 (分析環境邊遷)</label>
-                    <input type="file" class="w-full p-2 border border-dashed rounded bg-gray-50">
-                </div>
-                <div class="mb-4">
-                    <label class="block font-bold mb-2">需求主旨</label>
-                    <input type="text" id="reqSubject" class="w-full p-3 border rounded" placeholder="如：洗手台高度調整需求">
-                </div>
-                <div class="mb-4">
-                    <label class="block font-bold mb-2">預算金額 (NTD)</label>
-                    <input type="number" id="reqBudget" class="w-full p-3 border rounded" placeholder="2500 - 15000">
-                </div>
-                <div class="mb-4">
-                    <label class="block font-bold mb-2">詳細說明</label>
-                    <textarea id="reqDetails" rows="4" class="w-full p-3 border rounded"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="w-full bg-secondary text-dark font-bold py-4 rounded-lg hover:bg-yellow-600 transition">傳送給專業設計師</button>
-            </form>
-        </div>
-    </main>
 
-    <main id="client-projects" class="max-w-4xl mx-auto p-6 hidden-section">
-        <h2 class="text-3xl font-bold mb-6 text-dark"><i class="fa-solid fa-box-open mr-2"></i>我的專案列表</h2>
-        <div id="clientProjectList" class="space-y-4">
-            <div class="bg-white p-6 rounded-xl shadow border-l-4 border-accent flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold text-lg">浴室洗手台共創改造 (待接案)</h3>
-                    <p class="text-sm text-gray-500">預算：$15,000 | 提交日期：2026-05-09</p>
-                </div>
-                <button class="text-accent font-bold hover:underline">查看詳情</button>
-            </div>
-        </div>
-    </main>
+        <!-- ESG 生活產業消費模式專區 -->
 
-    <main id="designer-portal" class="max-w-7xl mx-auto p-6 hidden-section flex flex-col md:flex-row gap-6 items-start">
-        
-        <aside class="w-full md:w-64 bg-dark text-white rounded-xl shadow-xl sticky top-24 shrink-0 overflow-hidden">
-            <div class="p-6 bg-primary text-center">
-                <div class="w-16 h-16 bg-light rounded-full mx-auto mb-3 flex items-center justify-center text-primary text-2xl">
-                    <i class="fa-solid fa-user-gear"></i>
-                </div>
-                <h3 class="font-bold">Chief Architect</h3>
-                <p class="text-xs opacity-70">正修科技大學 建築系</p>
-            </div>
-            <nav class="flex flex-col p-4 gap-1">
-                <div class="text-gray-500 text-xs mt-4 mb-2 px-2 uppercase tracking-widest">1. 接案專區</div>
-                <button onclick="switchDesignerTab('tab-available')" class="designer-nav-btn text-left px-4 py-3 rounded hover:bg-gray-700 flex items-center gap-3">
-                    <i class="fa-solid fa-list-ul"></i> 1-2 尚未接案
-                </button>
-                <button onclick="switchDesignerTab('tab-accepted')" class="designer-nav-btn text-left px-4 py-3 rounded hover:bg-gray-700 flex items-center gap-3">
-                    <i class="fa-solid fa-check-double"></i> 1-1 我已接案
-                </button>
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md border-l-8 border-primary">
 
-                <div class="text-gray-500 text-xs mt-4 mb-2 px-2 uppercase tracking-widest">2. 專案列表</div>
-                <button onclick="switchDesignerTab('tab-reqs')" class="designer-nav-btn text-left px-4 py-3 rounded hover:bg-gray-700 flex items-center gap-3">
-                    <i class="fa-solid fa-file-invoice"></i> 2-2 客戶需求
-                </button>
-                <button onclick="switchDesignerTab('tab-chat')" class="designer-nav-btn text-left px-4 py-3 rounded hover:bg-gray-700 flex items-center gap-3">
-                    <i class="fa-solid fa-comments"></i> 2-1 客戶聯絡
-                </button>
+            <h2 class="text-3xl font-bold mb-4 text-primary"><i class="fa-solid fa-leaf mr-2"></i>ESG 生活產業消費模式</h2>
 
-                <div class="text-gray-500 text-xs mt-4 mb-2 px-2 uppercase tracking-widest">3. 其他</div>
-                <button onclick="switchDesignerTab('tab-profile')" class="designer-nav-btn text-left px-4 py-3 rounded hover:bg-gray-700 flex items-center gap-3">
-                    <i class="fa-solid fa-id-card"></i> 個人資訊 (自我介紹)
-                </button>
-            </nav>
-        </aside>
+            <p class="text-lg text-gray-700 mb-6">我們的設計核心在於 <strong>「E (Environment) - 減少不必要的浪費」</strong>。透過系統性的發展適配評估，讓每一次的空間改造與消費，都精準對接孩子的成長所需，實現永續居住美學。</p>
 
-        <section class="flex-1 bg-white rounded-xl shadow-lg min-h-[600px] w-full">
             
-            <div id="tab-available" class="designer-subview active p-8">
-                <h2 class="text-2xl font-bold mb-6 text-primary">尚未接案列表</h2>
-                <div class="space-y-4">
-                    <div class="border p-4 rounded-lg flex justify-between items-center bg-gray-50">
-                        <div>
-                            <h4 class="font-bold">客廳感官角落設計 (新竹林先生)</h4>
-                            <p class="text-sm text-gray-500">預算：$8,000 | 提交時間：2026-05-09</p>
-                        </div>
-                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-green-700">立即接案</button>
-                    </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div class="bg-green-50 p-6 rounded-lg text-center">
+
+                    <div class="text-4xl text-green-700 mb-3"><i class="fa-solid fa-recycle"></i></div>
+
+                    <h3 class="font-bold text-xl mb-2 text-dark">源頭減量 (Reduce)</h3>
+
+                    <p class="text-gray-600 text-sm text-left">拒絕過度裝潢與一次性家具。我們針對孩子當下發展需求提供「空間處方箋」，避免盲目施工或購買造成的資源與金錢浪費。</p>
+
                 </div>
+
+                <div class="bg-yellow-50 p-6 rounded-lg text-center">
+
+                    <div class="text-4xl text-yellow-600 mb-3"><i class="fa-solid fa-arrows-rotate"></i></div>
+
+                    <h3 class="font-bold text-xl mb-2 text-dark">共享與循環 (Reuse)</h3>
+
+                    <p class="text-gray-600 text-sm text-left">獨創模組化系統，讓家具能伴隨孩子成長「變形」。前階段的組件可無縫轉換為下階段的居家收納，落實產品生命週期的極大化。</p>
+
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-lg text-center">
+
+                    <div class="text-4xl text-accent mb-3"><i class="fa-solid fa-bullseye"></i></div>
+
+                    <h3 class="font-bold text-xl mb-2 text-dark">精準消費 (Refuse)</h3>
+
+                    <p class="text-gray-600 text-sm text-left">透過專業幼保評估，幫您篩選並拒絕「不需要的育兒神器」，將預算與地球資源保留給真正有助於孩童身心發展的核心環境配置。</p>
+
+                </div>
+
             </div>
 
-            <div id="tab-accepted" class="designer-subview p-8">
-                <h2 class="text-2xl font-bold mb-6 text-primary">我已接案項目</h2>
-                <div class="space-y-4">
-                    <div class="border-l-4 border-secondary p-4 rounded bg-gray-50 flex justify-between items-center">
-                        <div>
-                            <h4 class="font-bold">浴室洗手台共創改造 (王先生)</h4>
-                            <p class="text-sm text-gray-500">狀態：設計圖商議中</p>
-                        </div>
-                        <button onclick="switchDesignerTab('tab-chat')" class="text-secondary font-bold">開啟對話</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab-reqs" class="designer-subview p-8">
-                <h2 class="text-2xl font-bold mb-6 text-primary">當前客戶需求書 (王先生)</h2>
-                <div class="bg-light p-6 rounded-lg space-y-4">
-                    <p><strong>痛點：</strong> 小孩 2 歲搆不到水龍頭。</p>
-                    <p><strong>適配建議：</strong> 使用「模組化機能外套」原理，為洗手台建立可調式外掛踏板。預計使用 10 年後拆解轉化為層架。</p>
-                </div>
-            </div>
-
-            <div id="tab-chat" class="designer-subview h-full">
-                <div class="p-4 border-b bg-gray-50 font-bold flex justify-between">
-                    <span>聯絡視窗：王先生</span>
-                    <span class="text-xs text-green-600">● 在線上</span>
-                </div>
-                <div class="p-6 h-[400px] overflow-y-auto bg-gray-100 flex flex-col gap-4">
-                    <div class="self-start bg-white p-3 rounded-lg shadow-sm max-w-[80%] text-sm">
-                        您好，請問圖面大約何時會出來？
-                    </div>
-                    <div class="self-end bg-primary text-white p-3 rounded-lg shadow-sm max-w-[80%] text-sm">
-                        王先生您好，適配地圖已進入最後結構計算，預計明天下午傳送圖像給您確認。
-                    </div>
-                </div>
-                <div class="p-4 border-t flex gap-2">
-                    <input type="text" placeholder="輸入文字或商討細節..." class="flex-1 border p-2 rounded">
-                    <button class="bg-primary text-white px-6 py-2 rounded">傳送</button>
-                </div>
-            </div>
-
-            <div id="tab-profile" class="designer-subview p-8">
-                <h2 class="text-2xl font-bold mb-6 text-primary">設計師個人資訊</h2>
-                <div class="flex gap-6">
-                    <div class="w-32 h-40 bg-gray-200 rounded"></div>
-                    <div>
-                        <h4 class="text-xl font-bold">王子銓 (Wang Tzu-chuan)</h4>
-                        <p class="text-gray-600 mb-4">正修科技大學 建築系 三年級</p>
-                        <p class="text-sm leading-relaxed">
-                            專注於<strong>機能構築 (Tectonic)</strong>與<strong>模組化微循環</strong>空間研究。<br>
-                            主張透過物理性的結構改變（而非高耗能的電子設備）來解決兒童發展中的空間障礙。<br>
-                            致力於推行「正確消費」的 ESG 生活模式。
-                        </p>
-                    </div>
-                </div>
-            </div>
         </section>
+
+
+
+        <!-- 模組化案例展示 -->
+
+        <h2 class="text-3xl font-bold border-b-2 border-primary pb-2 mb-8"><i class="fa-solid fa-layer-group mr-2"></i>模組化案例展示</h2>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col md:flex-row">
+
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="浴室空間" class="md:w-1/3 object-cover h-64 md:h-auto">
+
+            <div class="p-8 md:w-2/3">
+
+                <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">主打案例</span>
+
+                <h3 class="text-2xl font-bold mt-3 mb-2 text-dark">可成長「共響洗手台系統」</h3>
+
+                <p class="text-gray-600 mb-4">大人的洗手台小孩搆不到？讓洗手台跟小孩一起長大。從 2 歲用到 10 歲，使用完後可無縫轉換為居家收納或植栽槽。</p>
+
+                <div class="mt-6 bg-light p-4 rounded-lg">
+
+                    <h4 class="font-bold text-center mb-4"><i class="fa-solid fa-chart-line mr-2"></i>15 年生命週期成本對比</h4>
+
+                    <div class="flex flex-col lg:flex-row gap-6">
+
+                        <div class="w-full lg:w-1/2">
+
+                            <canvas id="costChart" width="400" height="250"></canvas>
+
+                        </div>
+
+                        <div class="w-full lg:w-1/2 overflow-x-auto">
+
+                            <table class="min-w-full text-xs text-left bg-white rounded">
+
+                                <thead class="bg-gray-200 text-gray-700">
+
+                                    <tr>
+
+                                        <th class="p-2">階段</th>
+
+                                        <th class="p-2 text-red-600">快消模式</th>
+
+                                        <th class="p-2 text-primary">模組系統</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <tr class="border-b"><td class="p-2 font-bold">幼兒期</td><td class="p-2">$3,000</td><td class="p-2">$10,000</td></tr>
+
+                                    <tr class="border-b"><td class="p-2 font-bold">成長期</td><td class="p-2">+$6,000</td><td class="p-2">$0</td></tr>
+
+                                    <tr class="border-b"><td class="p-2 font-bold">青少年</td><td class="p-2">+$10,000</td><td class="p-2">+$2,000</td></tr>
+
+                                    <tr><td class="p-2 font-bold">退役轉生</td><td class="p-2">+$2,000</td><td class="p-2">$0</td></tr>
+
+                                    <tr class="bg-gray-100 font-bold"><td class="p-2">總計花費</td><td class="p-2 text-red-600">約 $21,000</td><td class="p-2 text-primary">約 $12,000</td></tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </main>
+
+
+
+    <!-- MAIN: 客戶端 (需登入) -->
+
+    <main id="client-portal" class="max-w-4xl mx-auto p-6 hidden-section transition-all duration-300">
+
+        <div class="flex justify-between items-end mb-6 border-b-2 border-secondary pb-2">
+
+            <h2 class="text-3xl font-bold text-secondary"><i class="fa-solid fa-clipboard-list mr-2"></i>提出適配改造需求</h2>
+
+            <span id="clientNameDisplay" class="text-gray-600 font-bold"></span>
+
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary">
+
+            <form id="clientForm">
+
+                <div class="mb-4">
+
+                    <label class="block font-bold mb-2">空間痛點主旨</label>
+
+                    <input type="text" id="reqSubject" placeholder="例如：兩歲小孩洗手搆不到..." class="w-full p-3 border rounded bg-gray-50" required>
+
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+
+                    <div>
+
+                        <label class="block font-bold mb-2">孩童人數與年齡</label>
+
+                        <input type="text" id="reqKids" placeholder="例如：1人, 3歲" class="w-full p-3 border rounded bg-gray-50" required>
+
+                    </div>
+
+                    <div>
+
+                        <label class="block font-bold mb-2">預算評估 (NTD)</label>
+
+                        <select id="reqBudget" class="w-full p-3 border rounded bg-gray-50">
+
+                            <option value="5000">基本模組方案 (約 $5,000)</option>
+
+                            <option value="15000">進階共創方案 (約 $15,000)</option>
+
+                            <option value="30000">全面適配計畫 ($30,000以上)</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="block font-bold mb-2">詳細要求內容與幼兒發展狀況</label>
+
+                    <textarea id="reqDetails" rows="4" placeholder="請描述孩子的感官偏好或需要加強的發展項目..." class="w-full p-3 border rounded bg-gray-50" required></textarea>
+
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-secondary text-dark font-bold py-4 rounded-lg hover:bg-yellow-600 transition text-lg flex justify-center items-center">
+
+                    <span>發送評估需求</span>
+
+                </button>
+
+            </form>
+
+            <div id="successMsg" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center font-bold">
+
+                <i class="fa-solid fa-check-circle mr-2"></i>您的需求已成功送至資料庫，設計團隊將盡快與您聯繫！
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- MAIN: 設計師端 -->
+
+    <main id="designer-portal" class="max-w-6xl mx-auto p-6 hidden-section transition-all duration-300">
+
+        <div class="flex justify-between items-end mb-6 border-b-2 border-primary pb-2">
+
+            <h2 class="text-3xl font-bold text-primary"><i class="fa-solid fa-compass-drafting mr-2"></i>設計師專區</h2>
+
+            <span class="text-gray-500 font-bold">目前登入：Chief Architect</span>
+
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+
+            <div class="md:w-1/3 bg-white rounded-xl shadow p-4 h-[600px] overflow-y-auto">
+
+                <h3 class="font-bold text-lg mb-4 text-dark">新進客戶回報</h3>
+
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-3 mb-3 rounded cursor-pointer">
+
+                    <div class="flex justify-between"><span class="font-bold">王先生</span></div>
+
+                    <p class="text-sm truncate text-gray-600">主旨：浴室洗手台共創改造</p>
+
+                </div>
+
+            </div>
+
+            <div class="md:w-2/3 bg-white rounded-xl shadow flex flex-col h-[600px]">
+
+                <div class="p-4 bg-gray-100 border-b font-bold flex justify-between items-center rounded-t-xl">
+
+                    <span>與 王先生 商討細節</span>
+
+                </div>
+
+                <div class="flex-1 p-4 overflow-y-auto bg-gray-50">
+
+                    <!-- 聊天內容預留空間 -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- 頁尾宣告區塊 -->
+
+    <footer class="bg-dark text-gray-300 py-8 mt-auto w-full">
+
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div class="text-center md:text-left">
+
+                <h4 class="text-white font-bold text-lg mb-2"><i class="fa-solid fa-seedling mr-2"></i>發展適配方舟計畫</h4>
+
+                <p class="text-sm">幼兒家庭空間成長共創訂閱服務</p>
+
+            </div>
+
+            <div class="text-center md:text-right text-sm border-t border-gray-600 pt-4 md:border-t-0 md:pt-0">
+
+                <p class="mb-2 text-yellow-500 font-bold">網站共同作者：林恩予、張馨翎、王子銓</p>
+
+                <p>&copy; 2026 發展適配方舟計畫. All Rights Reserved.</p>
+
+                <p class="mt-1"><i class="fa-solid fa-scale-balanced mr-1"></i>智慧財產權聲明：翻印必究</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Firebase 與腳本邏輯 -->
 
     <script type="module">
-        // --- 1. Firebase 初始化 (已整合您的配置) ---
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+
+
         const firebaseConfig = {
+
             apiKey: "AIzaSyCPRgxhfmQ5Jnu1cV-pOYpRof3z9hg1LUk",
+
             authDomain: "block-6e02f.firebaseapp.com",
+
             projectId: "block-6e02f",
+
             storageBucket: "block-6e02f.firebasestorage.app",
+
             messagingSenderId: "957809724704",
-            appId: "1:957809724704:web:92f601c25699f8773a1b45"
+
+            appId: "1:957809724704:web:92f601c25699f8773a1b45",
+
+            measurementId: "G-QC7P6HB0TW"
+
         };
+
+
+
         const app = initializeApp(firebaseConfig);
+
+        const analytics = getAnalytics(app);
+
         const db = getFirestore(app);
 
-        // --- 2. 頁面控制與權限管理 ---
-        window.showSection = function(id) {
-            document.querySelectorAll('main').forEach(m => m.classList.add('hidden-section'));
-            const target = document.getElementById(id);
-            if(target) target.classList.remove('hidden-section');
-            window.scrollTo(0,0);
+
+
+        // -----------------------------------------
+
+        // UI & Modal 控制邏輯
+
+        // -----------------------------------------
+
+        window.showSection = function(sectionId) {
+
+            document.querySelectorAll('main').forEach(el => el.classList.add('hidden-section'));
+
+            document.getElementById(sectionId).classList.remove('hidden-section');
+
+            window.scrollTo(0, 0);
+
         };
 
-        window.switchDesignerTab = function(tabId) {
-            document.querySelectorAll('.designer-subview').forEach(v => v.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-        };
 
-        window.updateNavUI = function() {
-            const role = localStorage.getItem('userRole');
-            const btns = {
-                clientLogin: document.getElementById('navClientLoginBtn'),
-                designerLogin: document.getElementById('navDesignerLoginBtn'),
-                clientPortal: document.getElementById('navClientPortalBtn'),
-                clientProj: document.getElementById('navClientProjectsBtn'),
-                designerPortal: document.getElementById('navDesignerPortalBtn'),
-                logout: document.getElementById('navLogoutBtn')
-            };
 
-            // 預設全部隱藏
-            Object.values(btns).forEach(b => b.classList.add('hidden'));
+        window.toggleMobileMenu = function() { document.getElementById('navMenu').classList.toggle('hidden'); };
 
-            if (role === 'client') {
-                btns.clientPortal.classList.remove('hidden');
-                btns.clientProj.classList.remove('hidden');
-                btns.logout.classList.remove('hidden');
-            } else if (role === 'designer') {
-                btns.designerPortal.classList.remove('hidden');
-                btns.logout.classList.remove('hidden');
-            } else {
-                btns.clientLogin.classList.remove('hidden');
-                btns.designerLogin.classList.remove('hidden');
-            }
-        };
+        window.closeMobileMenu = function() { if(window.innerWidth < 768) document.getElementById('navMenu').classList.add('hidden'); };
 
-        window.logout = function() {
-            localStorage.clear();
-            window.updateNavUI();
-            window.showSection('home');
-        };
 
-        // --- 3. 模擬登入 (可串接真正的 Auth) ---
+
+        // 設計師 Modal
+
         window.openDesignerModal = function() {
-            // 此處為簡單模擬，直接呼叫帳密檢核或跳出 Modal
-            const user = prompt("設計師帳號 (71101mi)");
-            const pass = prompt("密碼 (5462)");
-            if(user === '71101mi' && pass === '5462') {
-                localStorage.setItem('userRole', 'designer');
-                window.updateNavUI();
-                window.showSection('designer-portal');
-            }
+
+            document.getElementById('designerModal').classList.remove('hidden');
+
+            document.getElementById('designerLoginError').classList.add('hidden');
+
         };
+
+        window.closeDesignerModal = function() { document.getElementById('designerModal').classList.add('hidden'); };
+
+
+
+        // 客戶 Modal 與註冊邏輯狀態
+
+        let isRegisterMode = false;
 
         window.openClientModal = function() {
-            // 模擬客戶登入
-            localStorage.setItem('userRole', 'client');
-            window.updateNavUI();
-            window.showSection('client-portal');
+
+            isRegisterMode = false;
+
+            updateClientModalUI();
+
+            document.getElementById('clientModal').classList.remove('hidden');
+
         };
 
-        // --- 4. Firestore 提交邏輯 ---
-        const clientForm = document.getElementById('clientForm');
-        if(clientForm) {
-            clientForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const btn = document.getElementById('submitBtn');
-                btn.innerText = '正在傳送適配地圖...';
-                try {
-                    await addDoc(collection(db, "design_requests"), {
-                        subject: document.getElementById('reqSubject').value,
-                        budget: document.getElementById('reqBudget').value,
-                        details: document.getElementById('reqDetails').value,
-                        status: "pending",
-                        createdAt: serverTimestamp()
-                    });
-                    alert("需求已送出，請至『我的專案』追蹤。");
-                    clientForm.reset();
-                    window.showSection('client-projects');
-                } catch (err) { console.error(err); }
-                btn.innerText = '傳送給專業設計師';
-            });
+        window.closeClientModal = function() { 
+
+            document.getElementById('clientModal').classList.add('hidden'); 
+
+            document.getElementById('clientUsername').value = '';
+
+            document.getElementById('clientPassword').value = '';
+
+            document.getElementById('clientConfirmPassword').value = '';
+
+            document.getElementById('clientErrorMsg').classList.add('hidden');
+
+            document.getElementById('clientSuccessMsg').classList.add('hidden');
+
+        };
+
+
+
+        window.toggleClientAuthMode = function() {
+
+            isRegisterMode = !isRegisterMode;
+
+            updateClientModalUI();
+
+        };
+
+
+
+        function updateClientModalUI() {
+
+            const title = document.getElementById('clientModalTitle');
+
+            const submitBtn = document.getElementById('clientSubmitBtn');
+
+            const toggleBtn = document.getElementById('toggleAuthModeBtn');
+
+            const registerFields = document.getElementById('registerFields');
+
+            const errorMsg = document.getElementById('clientErrorMsg');
+
+            const successMsg = document.getElementById('clientSuccessMsg');
+
+
+
+            errorMsg.classList.add('hidden');
+
+            successMsg.classList.add('hidden');
+
+
+
+            if (isRegisterMode) {
+
+                title.innerHTML = '<i class="fa-solid fa-user-plus mr-2"></i>客戶註冊';
+
+                submitBtn.innerText = '立即註冊';
+
+                toggleBtn.innerText = '已經有帳號了？點此登入';
+
+                registerFields.classList.remove('hidden');
+
+            } else {
+
+                title.innerHTML = '<i class="fa-solid fa-user mr-2"></i>客戶登入';
+
+                submitBtn.innerText = '登入';
+
+                toggleBtn.innerText = '還沒有帳號？點此註冊';
+
+                registerFields.classList.add('hidden');
+
+            }
+
         }
 
-        // --- 5. Chart.js 初始化 ---
-        const ctx = document.getElementById('costChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['幼兒期', '成長期', '青少年', '退役轉生'],
-                datasets: [
-                    { label: '快消模式', data: [3000, 9000, 19000, 21000], borderColor: '#EF4444', fill: false },
-                    { label: '正確消費', data: [10000, 10000, 12000, 12000], borderColor: '#5C6E58', fill: false }
-                ]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
+
+
+        // -----------------------------------------
+
+        // 權限與登入/註冊機制
+
+        // -----------------------------------------
+
+        
+
+        // 模擬的客戶資料庫 (存在 LocalStorage，確保重新整理依然有效)
+
+        function getClientDB() {
+
+            const db = localStorage.getItem('mockClientDB');
+
+            return db ? JSON.parse(db) : { '12345': '678910' }; // 預設提供一組帳號
+
+        }
+
+        function saveClientDB(db) {
+
+            localStorage.setItem('mockClientDB', JSON.stringify(db));
+
+        }
+
+
+
+        window.updateNavUI = function() {
+
+            const role = localStorage.getItem('userRole');
+
+            const currentUsername = localStorage.getItem('currentUsername');
+
+            
+
+            const navClientLogin = document.getElementById('navClientLoginBtn');
+
+            const navDesignerLogin = document.getElementById('navDesignerLoginBtn');
+
+            const navClientPortal = document.getElementById('navClientPortalBtn');
+
+            const navDesignerPortal = document.getElementById('navDesignerPortalBtn');
+
+            const logoutBtn = document.getElementById('navLogoutBtn');
+
+            
+
+            // 預設全部隱藏
+
+            navClientLogin.classList.add('hidden');
+
+            navDesignerLogin.classList.add('hidden');
+
+            navClientPortal.classList.add('hidden');
+
+            navDesignerPortal.classList.add('hidden');
+
+            logoutBtn.classList.add('hidden');
+
+
+
+            if (role === 'designer') {
+
+                navDesignerPortal.classList.remove('hidden');
+
+                logoutBtn.classList.remove('hidden');
+
+            } else if (role === 'client') {
+
+                navClientPortal.classList.remove('hidden');
+
+                logoutBtn.classList.remove('hidden');
+
+                document.getElementById('clientNameDisplay').innerText = `歡迎回來，${currentUsername}`;
+
+            } else {
+
+                // 未登入
+
+                navClientLogin.classList.remove('hidden');
+
+                navDesignerLogin.classList.remove('hidden');
+
+            }
+
+        };
+
+
+
+        // 處理客戶登入/註冊提交
+
+        window.submitClientAuth = function() {
+
+            const user = document.getElementById('clientUsername').value.trim();
+
+            const pass = document.getElementById('clientPassword').value.trim();
+
+            const confirmPass = document.getElementById('clientConfirmPassword').value.trim();
+
+            const errorMsg = document.getElementById('clientErrorMsg');
+
+            const successMsg = document.getElementById('clientSuccessMsg');
+
+            
+
+            errorMsg.classList.add('hidden');
+
+            successMsg.classList.add('hidden');
+
+
+
+            if(!user || !pass) {
+
+                errorMsg.innerText = "帳號或密碼不能為空";
+
+                errorMsg.classList.remove('hidden');
+
+                return;
+
+            }
+
+
+
+            const db = getClientDB();
+
+
+
+            if (isRegisterMode) {
+
+                // 註冊邏輯
+
+                if (pass !== confirmPass) {
+
+                    errorMsg.innerText = "兩次輸入的密碼不一致";
+
+                    errorMsg.classList.remove('hidden');
+
+                    return;
+
+                }
+
+                if (db[user]) {
+
+                    errorMsg.innerText = "此帳號已經存在，請直接登入";
+
+                    errorMsg.classList.remove('hidden');
+
+                    return;
+
+                }
+
+                // 寫入模擬資料庫
+
+                db[user] = pass;
+
+                saveClientDB(db);
+
+                
+
+                successMsg.innerText = "註冊成功！系統將自動為您登入...";
+
+                successMsg.classList.remove('hidden');
+
+                
+
+                setTimeout(() => {
+
+                    loginClientSuccess(user);
+
+                }, 1000);
+
+
+
+            } else {
+
+                // 登入邏輯
+
+                if (db[user] && db[user] === pass) {
+
+                    loginClientSuccess(user);
+
+                } else {
+
+                    errorMsg.innerText = "帳號或密碼錯誤，請重試";
+
+                    errorMsg.classList.remove('hidden');
+
+                }
+
+            }
+
+        };
+
+
+
+        function loginClientSuccess(username) {
+
+            localStorage.setItem('userRole', 'client');
+
+            localStorage.setItem('currentUsername', username);
+
+            window.closeClientModal();
+
+            window.updateNavUI();
+
+            window.showSection('client-portal');
+
+        }
+
+
+
+        // 設計師登入邏輯
+
+        window.attemptDesignerLogin = function() {
+
+            const user = document.getElementById('designerUsername').value;
+
+            const pass = document.getElementById('designerPassword').value;
+
+            
+
+            if(user === '71101mi' && pass === '5462') {
+
+                localStorage.setItem('userRole', 'designer');
+
+                localStorage.setItem('currentUsername', 'Chief Architect');
+
+                window.closeDesignerModal();
+
+                window.updateNavUI();
+
+                window.showSection('designer-portal');
+
+            } else {
+
+                document.getElementById('designerLoginError').classList.remove('hidden');
+
+            }
+
+            document.getElementById('designerUsername').value = '';
+
+            document.getElementById('designerPassword').value = '';
+
+        };
+
+
+
+        // 登出邏輯
+
+        window.logout = function() {
+
+            localStorage.removeItem('userRole');
+
+            localStorage.removeItem('currentUsername');
+
+            window.updateNavUI();
+
+            window.showSection('home');
+
+            window.closeMobileMenu();
+
+        };
+
+
+
+        // 初始化
+
+        window.onload = function() {
+
+            window.updateNavUI();
+
+            const role = localStorage.getItem('userRole');
+
+            
+
+            if (role === 'designer') window.showSection('designer-portal');
+
+            else if (role === 'client') window.showSection('client-portal');
+
+            else window.showSection('home'); // 未登入強迫回首頁
+
+
+
+            // 初始化 Chart.js
+
+            const ctx = document.getElementById('costChart').getContext('2d');
+
+            new Chart(ctx, {
+
+                type: 'line',
+
+                data: {
+
+                    labels: ['幼兒期', '成長期', '青少年', '退役轉生(長期)'],
+
+                    datasets: [
+
+                        { label: '快消模式', data: [3000, 9000, 19000, 21000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
+
+                        { label: '模組化系統', data: [10000, 10000, 12000, 12000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
+
+                    ]
+
+                },
+
+                options: { responsive: true, maintainAspectRatio: false }
+
+            });
+
+        };
+
+
+
+        // -----------------------------------------
+
+        // Firestore 資料寫入邏輯
+
+        // -----------------------------------------
+
+        const clientForm = document.getElementById('clientForm');
+
+        const submitBtn = document.getElementById('submitBtn');
+
+        const successMsg = document.getElementById('successMsg');
+
+
+
+        clientForm.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+
+            const originalBtnText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>傳送中...';
+
+            submitBtn.disabled = true;
+
+
+
+            const currentClient = localStorage.getItem('currentUsername') || 'Unknown';
+
+
+
+            try {
+
+                await addDoc(collection(db, "design_requests"), {
+
+                    clientAccount: currentClient,
+
+                    subject: document.getElementById('reqSubject').value,
+
+                    kidsInfo: document.getElementById('reqKids').value,
+
+                    budget: document.getElementById('reqBudget').value,
+
+                    details: document.getElementById('reqDetails').value,
+
+                    status: "new",
+
+                    createdAt: serverTimestamp()
+
+                });
+
+
+
+                clientForm.reset();
+
+                successMsg.classList.remove('hidden');
+
+                setTimeout(() => { successMsg.classList.add('hidden'); }, 3000);
+
+
+
+            } catch (error) {
+
+                console.error("寫入文件時發生錯誤: ", error);
+
+                alert("傳送失敗，請檢查網路連線或系統設定。");
+
+            } finally {
+
+                submitBtn.innerHTML = originalBtnText;
+
+                submitBtn.disabled = false;
+
+            }
+
         });
 
-        window.onload = window.updateNavUI;
     </script>
+
 </body>
+
 </html>
