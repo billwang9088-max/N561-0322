@@ -49,11 +49,11 @@
             </div>
 
             <div id="navMenu" class="hidden absolute top-full left-0 w-full bg-primary md:static md:w-auto md:flex flex-col md:flex-row items-center gap-3 p-4 md:p-0 shadow-lg md:shadow-none transition-all z-40">
+                <a href="#features" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-bolt mr-1"></i><span data-i18n="nav-features">計畫亮點</span></a>
                 <a href="#cases" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-layer-group mr-1"></i><span data-i18n="nav-cases">模組案例</span></a>
-                <a href="#knowledge" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-book-open mr-1"></i><span data-i18n="nav-knowledge">專業知識</span></a>
 
                 <button onclick="window.toggleLanguage()" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold border-t md:border-t-0 md:border-l border-white/30 pt-3 mt-2 md:pt-0 md:mt-0 md:pl-3 md:ml-2">
-                    <i class="fa-solid fa-globe mr-1"></i><span id="langBtnText">EN/中</span>
+                    <i class="fa-solid fa-globe mr-1"></i><span id="langBtnText">EN / 中</span>
                 </button>
 
                 <button onclick="window.toggleDarkMode()" class="hidden md:block w-full md:w-auto hover:text-secondary transition text-lg font-bold ml-2">
@@ -77,26 +77,25 @@
     <div id="designerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center hidden px-4">
         <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-sm border-t-4 border-primary transition-colors">
             <h2 class="text-2xl font-bold mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-compass-drafting mr-2"></i><span data-i18n="nav-designer-login">設計師登入</span></h2>
-            <input type="text" id="designerUsername" placeholder="設計師帳號 (預設: 71101mi)" class="w-full mb-3 p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <input type="password" id="designerPassword" placeholder="密碼 (預設: 5462)" class="w-full mb-4 p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <input type="text" id="designerUsername" placeholder="ID (測試: 11 或 71101mi)" class="w-full mb-3 p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <input type="password" id="designerPassword" placeholder="PW (測試: 11 或 5462)" class="w-full mb-4 p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <div class="flex justify-end gap-2">
                 <button onclick="window.closeDesignerModal()" class="px-4 py-2 text-gray-500 hover:text-gray-800 dark:text-gray-300" data-i18n="btn-cancel">取消</button>
                 <button onclick="window.attemptDesignerLogin()" class="bg-primary text-white px-4 py-2 rounded hover:bg-green-800" data-i18n="btn-login">登入</button>
             </div>
-            <p id="designerLoginError" class="text-red-500 text-sm mt-2 hidden">設計師帳號或密碼錯誤</p>
+            <p id="designerLoginError" class="text-red-500 text-sm mt-2 hidden">帳號或密碼錯誤</p>
         </div>
     </div>
 
     <div id="clientModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center hidden px-4">
         <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-sm border-t-4 border-secondary transition-colors">
             <h2 id="clientModalTitle" class="text-2xl font-bold mb-4 text-secondary"><i class="fa-solid fa-user mr-2"></i><span data-i18n="nav-client-login">客戶登入</span></h2>
-            <input type="text" id="clientUsername" placeholder="客戶帳號" class="w-full mb-3 p-2 border rounded bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <input type="password" id="clientPassword" placeholder="密碼" class="w-full mb-4 p-2 border rounded bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <input type="text" id="clientUsername" placeholder="ID (測試帳號: 22)" class="w-full mb-3 p-2 border rounded bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <input type="password" id="clientPassword" placeholder="PW (測試密碼: 22)" class="w-full mb-4 p-2 border rounded bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <div id="registerFields" class="hidden">
                 <input type="password" id="clientConfirmPassword" placeholder="再次確認密碼" class="w-full mb-4 p-2 border rounded bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             </div>
             <p id="clientErrorMsg" class="text-red-500 text-sm mb-4 hidden"></p>
-            <p id="clientSuccessMsg" class="text-green-600 text-sm mb-4 hidden"></p>
             <div class="flex flex-col sm:flex-row justify-between items-center mt-2 gap-4">
                 <button id="toggleAuthModeBtn" onclick="window.toggleClientAuthMode()" class="text-sm text-gray-500 underline hover:text-primary dark:text-gray-300" data-i18n="btn-switch-reg">還沒有帳號？點此註冊</button>
                 <div class="flex gap-2 w-full sm:w-auto">
@@ -107,260 +106,166 @@
         </div>
     </div>
 
-    <main id="home" class="max-w-6xl mx-auto p-4 md:p-6 transition-all duration-300">
+    <main id="home" class="max-w-7xl mx-auto p-4 md:p-6 transition-all duration-300">
         
-        <header class="text-center py-12 mb-8 bg-cover bg-center rounded-xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1610486827050-681b95b4baeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+        <header class="text-center py-12 mb-10 bg-cover bg-center rounded-xl relative overflow-hidden shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1610486827050-681b95b4baeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
             <div class="absolute inset-0 bg-dark bg-opacity-60"></div>
             <div class="relative z-10 text-light px-4">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4" data-i18n="hero-title">幼兒家庭空間成長共創訂閱服務</h2>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-i18n="hero-subtitle">
-                    我們不是傳統室內設計師。<br>我們是「幼保 × 建築」的兒童發展空間顧問。
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-wide" data-i18n="hero-title">幼兒家庭空間成長共創</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-gray-200" data-i18n="hero-sub">
+                    我們不是傳統室內設計師，我們是結合「幼保 × 建築」的空間適配顧問。
                 </p>
             </div>
         </header>
 
-        <section class="mb-16 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-secondary transition-colors">
+        <section class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-secondary transition-colors max-w-6xl mx-auto">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-secondary"><i class="fa-solid fa-shoe-prints mr-2"></i><span data-i18n="start-title">如何開始：第一步怎麼使用</span></h2>
             <div class="grid md:grid-cols-3 gap-8 relative">
                 <div class="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-1 bg-gray-200 dark:bg-gray-700 -z-0"></div>
                 <div class="relative z-10 flex flex-col items-center text-center bg-white dark:bg-gray-800 p-4 rounded-xl">
                     <div class="w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">1</div>
                     <h3 class="font-bold text-xl mb-2" data-i18n="step1-title">註冊與登入</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step1-desc">點擊右上角的「客戶登入 / 註冊」，建立專屬於您家庭的帳號，開啟適配改造之旅。</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step1-desc">建立專屬帳號，開啟適配改造。</p>
                 </div>
                 <div class="relative z-10 flex flex-col items-center text-center bg-white dark:bg-gray-800 p-4 rounded-xl">
                     <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">2</div>
                     <h3 class="font-bold text-xl mb-2" data-i18n="step2-title">填寫需求表單</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step2-desc">進入「我要提出需求」專區，描述您家中空間的痛點以及孩子的年齡與發展狀況。</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step2-desc">描述家中空間痛點與孩子發展狀況。</p>
                 </div>
                 <div class="relative z-10 flex flex-col items-center text-center bg-white dark:bg-gray-800 p-4 rounded-xl">
                     <div class="w-16 h-16 bg-accent text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">3</div>
                     <h3 class="font-bold text-xl mb-2" data-i18n="step3-title">設計師接案與共創</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step3-desc">我們的設計師會承接您的案件，透過「我的專案」與您進行線上對談與後續規劃。</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="step3-desc">設計師線上對談，為您量身打造。</p>
                 </div>
             </div>
             <div class="text-center mt-8">
                 <button onclick="window.openClientModal(); window.scrollTo(0,0);" class="bg-secondary text-dark font-bold text-lg px-8 py-3 rounded-full hover:bg-yellow-600 transition shadow-md animate-bounce w-full md:w-auto">
-                    <span data-i18n="btn-start">立即免費註冊體驗</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <span data-i18n="btn-start">立即啟動計畫</span> <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
         </section>
 
+        <section id="features" class="mb-12 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow border-t-4 border-primary text-center">
+                    <i class="fa-solid fa-recycle text-3xl text-primary dark:text-green-400 mb-3"></i>
+                    <h3 class="font-bold text-lg mb-1 dark:text-white" data-i18n="feat1-title">ESG 循環減廢</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="feat1-desc">拒絕一次性過度裝潢，模組家具隨孩子成長無縫變形。</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow border-t-4 border-green-600 text-center">
+                    <i class="fa-solid fa-leaf text-3xl text-green-600 dark:text-green-400 mb-3"></i>
+                    <h3 class="font-bold text-lg mb-1 dark:text-white" data-i18n="feat2-title">實質量化減碳</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="feat2-desc">千戶訂閱預估年減 10 噸 CO2e，數據對齊 ISO 14067 國際標準。</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow border-t-4 border-blue-600 text-center">
+                    <i class="fa-solid fa-microscope text-3xl text-blue-600 dark:text-blue-400 mb-3"></i>
+                    <h3 class="font-bold text-lg mb-1 dark:text-white" data-i18n="feat3-title">科學發展框架</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="feat3-desc">空間刺激參數嚴格對齊 WHO 兒童發展里程碑與感覺統合理論。</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow border-t-4 border-accent text-center">
+                    <i class="fa-solid fa-handshake text-3xl text-accent dark:text-orange-400 mb-3"></i>
+                    <h3 class="font-bold text-lg mb-1 dark:text-white" data-i18n="feat4-title">B2B 與韌性服務</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="feat4-desc">支援托嬰中心建置、建商 ESG 綠標配，具備斷網紙本防呆配套。</p>
+                </div>
+            </div>
+        </section>
+
         <section id="cases">
-            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-8"><i class="fa-solid fa-layer-group mr-2"></i><span data-i18n="case-title">模組化案例展示與出圖形式</span></h2>
+            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-6 max-w-6xl mx-auto"><i class="fa-solid fa-layer-group mr-2"></i><span data-i18n="case-title">模組化適配案例與圖紙</span></h2>
             
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col transition-colors">
-                <div class="w-full bg-gray-100 dark:bg-gray-700 flex justify-center border-b dark:border-gray-700">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="浴室空間" class="object-cover w-full h-64 md:h-96">
-                </div>
-                <div class="p-6 md:p-8 w-full">
-                    <span class="bg-primary text-white px-3 py-1 rounded-full text-sm" data-i18n="badge-main">主打案例</span>
-                    <h3 class="text-2xl font-bold mt-3 mb-2 text-dark dark:text-white" data-i18n="case1-title">可成長「共響洗手台系統」</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4" data-i18n="case1-desc">大人的洗手台小孩搆不到？讓洗手台跟小孩一起長大。從 2 歲用到 10 歲，使用完後可無縫轉換為居家收納或植栽槽。</p>
+                
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="浴室空間" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
+                    </div>
                     
-                    <div class="mt-6 bg-light dark:bg-gray-700 p-6 rounded-lg mb-8">
-                        <h4 class="font-bold text-center mb-6 dark:text-white text-lg"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="case1-chart">15 年生命週期成本對比</span></h4>
-                        <div class="flex flex-col lg:flex-row gap-8">
-                            <div class="w-full lg:w-1/2 overflow-hidden relative h-72">
+                    <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-main">主打案例</span>
+                            <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case1-title">可成長「共響洗手台系統」</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case1-desc">陪伴孩子從 2 歲用到 10 歲，退役後完美轉生為植栽槽或居家收納箱。</p>
+                        
+                        <div class="bg-light dark:bg-gray-700 p-5 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-center mb-4 dark:text-white"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="case1-chart">15 年生命週期成本對比</span></h4>
+                            <div class="w-full h-64 relative">
                                 <canvas id="costChart"></canvas>
                             </div>
-                            <div class="w-full lg:w-1/2 overflow-x-auto flex items-center">
-                                <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-600 shadow-sm">
-                                    <thead class="bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
-                                        <tr>
-                                            <th class="p-4 whitespace-nowrap" data-i18n="table-stage">階段</th>
-                                            <th class="p-4 text-red-600 dark:text-red-400 whitespace-nowrap" data-i18n="chart-ds1">快消模式</th>
-                                            <th class="p-4 text-primary dark:text-green-400 whitespace-nowrap" data-i18n="chart-ds2">模組系統</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="dark:text-gray-300">
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-1">幼兒期</td><td class="p-4">$3,000</td><td class="p-4">$10,000</td></tr>
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-2">成长期</td><td class="p-4">+$6,000</td><td class="p-4">$0</td></tr>
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-3">青少年</td><td class="p-4">+$10,000</td><td class="p-4">+$2,000</td></tr>
-                                        <tr><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-4">退役轉生</td><td class="p-4">+$2,000</td><td class="p-4">$0</td></tr>
-                                        <tr class="bg-gray-100 dark:bg-gray-900 font-bold border-t dark:border-gray-600 text-base"><td class="p-4 whitespace-nowrap" data-i18n="table-total">總計花費</td><td class="p-4 text-red-600 dark:text-red-400" data-i18n="cost-21k">約 $21,000</td><td class="p-4 text-primary dark:text-green-400" data-i18n="cost-12k">約 $12,000</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="border-t-2 border-gray-200 dark:border-gray-700 pt-8">
-                        <h4 class="font-bold text-xl mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case1-draw">專業設計出圖形式</span></h4>
-                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg flex justify-center items-center p-4 mb-6 border border-gray-300 dark:border-gray-600 shadow-inner w-full">
-                            <img src="image_594416.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[500px] rounded">
-                        </div>
-                        <p class="text-base text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-primary leading-relaxed shadow-sm" data-i18n="case1-draw-desc">
-                            <strong>設計出圖規範：</strong>包含完整 3D 爆炸圖、五金節點大樣圖（Detail）、階段轉換組裝說明書，以及詳盡的材料碳足跡計算表（對齊 ISO 14067）。確保系統在每一次變形時，皆有精準的結構力學計算做後盾。
-                        </p>
+                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
+                    <h4 class="font-bold text-lg mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case1-draw">工程力學出圖</span></h4>
+                    
+                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
+                        <img src="image_57f5f9.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[600px] rounded">
                     </div>
-
-                    <div class="mt-6 bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border-l-4 border-green-600 shadow-sm">
-                        <h5 class="font-bold text-green-800 dark:text-green-400 mb-2 text-lg"><i class="fa-solid fa-earth-asia mr-2"></i><span data-i18n="case-eco-title">社會貢獻與減碳效益</span></h5>
-                        <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed" data-i18n="case1-eco-desc">透過共響模組的延續使用，避免了 3 次以上的產品汰換。經 LCA（生命週期評估）估算，單套洗手台系統約可減少 <strong>120kg CO2e</strong> 的碳排放量，等同於為地球種下約 10 棵樹的吸碳量，並能有效降低 60% 的大型廢棄物體積，徹底實踐源頭減廢。</p>
+                    
+                    <p class="text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded border-l-4 border-primary" data-i18n="case1-draw-desc">
+                        系統變形的每一次重組，皆備有精準的五金節點大樣圖 (Detail) 與結構承重數據計算，讓永續理念建構在扎實的工程科學上。
+                    </p>
+                    
+                    <div class="mt-4 bg-green-50 dark:bg-green-900/30 p-4 rounded border-l-4 border-green-600 flex items-start gap-3">
+                        <i class="fa-solid fa-earth-asia text-green-600 mt-1 text-xl"></i>
+                        <div>
+                            <h5 class="font-bold text-green-800 dark:text-green-400 text-sm" data-i18n="case1-eco">社會貢獻與減碳效益</h5>
+                            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="case1-eco-desc">免除至少 3 次產品汰換。單套減少約 120kg CO2e 碳排，大幅降低 60% 大型廢棄物體積。</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col border-t-4 border-secondary transition-colors">
-                <div class="w-full bg-gray-100 dark:bg-gray-700 flex justify-center border-b dark:border-gray-700 py-4">
-                    <img src="image_58c817.png" alt="成長型多功能嬰兒床" class="object-contain w-full h-auto max-h-[400px]">
-                </div>
-                <div class="p-6 md:p-8 w-full">
-                    <span class="bg-secondary text-dark font-bold px-3 py-1 rounded-full text-sm" data-i18n="badge-ext">延伸案例</span>
-                    <h3 class="text-2xl font-bold mt-3 mb-2 text-dark dark:text-white" data-i18n="case2-title">0~12+歲「成長型多功能嬰兒床」</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-lg" data-i18n="case2-desc">從新生兒的安全包覆、幼童期的探索學習（結合多種感官探索牆），到學齡期的專屬沙發閱讀區。當孩子長大不再需要床鋪時，床體更可完全拆解，無縫重組為「成長紀錄牆」、「書架展示架」與「玩具收納箱」，徹底實踐零浪費的永續價值。</p>
+                
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
+                        <img src="image_594416.jpg" alt="成長型多功能嬰兒床" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
+                    </div>
                     
-                    <div class="mt-6 bg-light dark:bg-gray-700 p-6 rounded-lg mb-8">
-                        <h4 class="font-bold text-center mb-6 dark:text-white text-lg"><i class="fa-solid fa-chart-pie mr-2"></i><span data-i18n="case2-chart">12 年以上生命週期成本對比</span></h4>
-                        <div class="flex flex-col lg:flex-row gap-8">
-                            <div class="w-full lg:w-1/2 overflow-hidden relative h-72">
+                    <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-secondary text-dark px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-ext">延伸案例</span>
+                            <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case2-title">0~12+歲「多功能嬰兒床」</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case2-desc">從防護嬰兒床 ➔ 探索感官牆 ➔ 兒童閱讀沙發 ➔ 最終拆解重組為展示書架。</p>
+                        
+                        <div class="bg-light dark:bg-gray-700 p-5 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-center mb-4 dark:text-white"><i class="fa-solid fa-chart-pie mr-2"></i><span data-i18n="case2-chart">12 年以上成本對比</span></h4>
+                            <div class="w-full h-64 relative">
                                 <canvas id="costChartCrib"></canvas>
                             </div>
-                            <div class="w-full lg:w-1/2 overflow-x-auto flex items-center">
-                                <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-600 shadow-sm">
-                                    <thead class="bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
-                                        <tr>
-                                            <th class="p-4 whitespace-nowrap" data-i18n="table-stage">發展階段</th>
-                                            <th class="p-4 text-red-600 dark:text-red-400 whitespace-nowrap" data-i18n="chart-ds1">傳統替換模式</th>
-                                            <th class="p-4 text-primary dark:text-green-400 whitespace-nowrap" data-i18n="chart-ds2">多功能成長系統</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="dark:text-gray-300">
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-1">0~2歲 (睡眠)</td><td class="p-4">$6,000</td><td class="p-4">$18,000</td></tr>
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-2">2~8歲 (學習)</td><td class="p-4">+$8,000</td><td class="p-4">$0</td></tr>
-                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-3">8~12歲 (成長)</td><td class="p-4">+$12,000</td><td class="p-4">$0</td></tr>
-                                        <tr><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-4">12歲+ (再利用)</td><td class="p-4">+$5,000</td><td class="p-4">$0</td></tr>
-                                        <tr class="bg-gray-100 dark:bg-gray-900 font-bold border-t dark:border-gray-600 text-base"><td class="p-4 whitespace-nowrap" data-i18n="table-total">總計累積花費</td><td class="p-4 text-red-600 dark:text-red-400" data-i18n="cost-31k">約 $31,000</td><td class="p-4 text-primary dark:text-green-400" data-i18n="cost-18k">約 $18,000</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border-t-2 border-gray-200 dark:border-gray-700 pt-8">
-                        <h4 class="font-bold text-xl mb-4 text-secondary dark:text-yellow-500"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case2-draw">結構力學與發展科學出圖形式</span></h4>
-                        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg flex justify-center items-center p-4 mb-6 border border-gray-300 dark:border-gray-600 shadow-inner w-full">
-                            <img src="image_58d057.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[500px] rounded">
-                        </div>
-                        <p class="text-base text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-secondary leading-relaxed shadow-sm" data-i18n="case2-draw-desc">
-                            <strong>設計出圖規範：</strong>視覺化呈現 0-12 歲的演進圖譜。系統化圖紙將清楚標示：結構板材如何從初期的「防護欄」，透過隱藏式卡榫轉換為兒童期的「觸覺/音樂牆」，最終重組為學齡期的「置物架」。
-                        </p>
-                    </div>
-
-                    <div class="mt-6 bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border-l-4 border-secondary shadow-sm">
-                        <h5 class="font-bold text-secondary dark:text-yellow-500 mb-2 text-lg"><i class="fa-solid fa-earth-asia mr-2"></i><span data-i18n="case-eco-title">社會貢獻與減碳效益</span></h5>
-                        <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed" data-i18n="case2-eco-desc">長達 12 年以上的陪伴計畫，直接省去購買 4 件不同階段家具所產生的製造與運輸碳足跡。預估單組嬰兒床系統在生命週期內可減少 <strong>250kg CO2e</strong> 碳排放。這不僅是環境的勝利，更能替年輕家庭省下超過 $13,000 元的支出，大幅減輕現代社會的育兒經濟壓力，創造永續共好的居住型態。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="knowledge">
-            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-8 mt-12 text-primary dark:text-green-400"><i class="fa-solid fa-book-open mr-2"></i><span data-i18n="nav-knowledge">專業計畫知識與框架</span></h2>
-            
-            <div class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-l-8 border-primary transition-colors">
-                <h3 class="text-2xl font-bold mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-leaf mr-2"></i><span data-i18n="esg-title">ESG 生活產業消費模式</span></h3>
-                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6" data-i18n="esg-desc">我們的設計核心在於 <strong>「E (Environment) - 減少不必要的浪費」</strong>。透過系統性的發展適配評估，讓每一次的空間改造與消費，都精準對接孩子的成長所需，實現永續居住美學。</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-green-700 dark:text-green-400 mb-3"><i class="fa-solid fa-recycle"></i></div>
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reduce">源頭減量 (Reduce)</h4>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reduce-desc">拒絕過度裝潢與一次性家具。我們針對孩子當下發展需求提供「空間處方箋」，避免盲目施工或購買造成的資源與金錢浪費。</p>
-                    </div>
-                    <div class="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-yellow-600 dark:text-yellow-400 mb-3"><i class="fa-solid fa-arrows-rotate"></i></div>
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reuse">共享與循環 (Reuse)</h4>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reuse-desc">獨創模組化系統，讓家具能伴隨孩子成長「變形」。前階段的組件可無縫轉換為下階段的居家收納，落實產品生命週期的極大化。</p>
-                    </div>
-                    <div class="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-accent dark:text-orange-400 mb-3"><i class="fa-solid fa-bullseye"></i></div>
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-refuse">精準消費 (Refuse)</h4>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-refuse-desc">透過專業幼保評估，幫您篩選並拒絕「不需要的育兒神器」，將預算與地球資源保留給真正有助於孩童身心發展的核心環境配置。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="impact" class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-green-700 transition-colors">
-                <h3 class="text-2xl font-bold mb-6 text-green-800 dark:text-green-400"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="nav-impact">量化減碳儀表板（ESG 實質數據）</span></h3>
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/2">
-                        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4" data-i18n="impact-desc">我們用數據證明永續不只是口號。依據我們的影響力模型預估，當達到 <strong>1,000 戶家庭訂閱規模</strong>時，透過模組化延壽與源頭減廢，預計將產出極大的環境保護績效：</p>
-                        <ul class="space-y-4 text-gray-700 dark:text-gray-300">
-                            <li class="flex items-start"><i class="fa-solid fa-check-circle text-green-600 mt-1 mr-3 text-xl"></i><div><strong data-i18n="impact-li1-str">年減 5-10 噸 CO2e 碳排放：</strong> <span data-i18n="impact-li1-txt">相當於每年為地球種植了 250-500 棵樹的總吸碳量。</span></div></li>
-                            <li class="flex items-start"><i class="fa-solid fa-check-circle text-green-600 mt-1 mr-3 text-xl"></i><div><strong data-i18n="impact-li2-str">杜絕「漂綠」的科學計算：</strong> <span data-i18n="impact-li2-txt">所有生命週期數據指標均參考 ISO 14067 (產品碳足跡) 與 GRI 301/306 國際標準計算。</span></div></li>
-                        </ul>
-                    </div>
-                    <div class="w-full md:w-1/2 bg-green-50 dark:bg-green-900/40 p-6 rounded-lg text-center border border-green-200 dark:border-green-800 relative overflow-hidden">
-                        <div class="absolute -right-4 -top-4 text-green-100 dark:text-green-800/50 text-9xl opacity-50"><i class="fa-solid fa-leaf"></i></div>
-                        <h4 class="text-xl font-bold mb-4 relative z-10 text-dark dark:text-white" data-i18n="impact-box-title">千戶訂閱影響力預估</h4>
-                        <div class="grid grid-cols-2 gap-4 relative z-10">
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded shadow-sm border dark:border-gray-600">
-                                <span class="block text-3xl font-extrabold text-green-600 dark:text-green-400">10 噸</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="impact-box1">年減 CO2e</span>
-                            </div>
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded shadow-sm border dark:border-gray-600">
-                                <span class="block text-3xl font-extrabold text-green-600 dark:text-green-400">500 棵</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="impact-box2">等效樹木吸碳量</span>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="science" class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-blue-800 transition-colors">
-                <h3 class="text-2xl font-bold mb-6 text-blue-900 dark:text-blue-400"><i class="fa-solid fa-microscope mr-2"></i><span data-i18n="nav-science">專業背書與國際科學框架</span></h3>
-                <p class="text-lg text-gray-700 dark:text-gray-300 mb-8" data-i18n="sci-desc">我們的每一項空間規劃與模組設計，背後皆具備嚴格的醫學、幼保與循環經濟理論支持：</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-1">發展科學</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-1-desc"><strong>WHO 2022 兒童發展里程碑</strong><br>依據世界衛生組織公佈之大動作、精細動作、認知與社交發展標準，將不同年齡層所需之空間刺激寫入設計參數。</p>
+                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
+                    <h4 class="font-bold text-lg mb-3 text-secondary dark:text-yellow-500"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case2-draw">視覺化演進圖譜</span></h4>
+                    
+                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
+                        <img src="image_58d057.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[600px] rounded">
                     </div>
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-2">幼保專業</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-2-desc"><strong>Ayres 感覺統合理論</strong><br>透過觸覺板、攀爬架等模組化設計，精準針對孩童的前庭覺、本體覺提供發展適配的環境處方箋。</p>
-                    </div>
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-3">永續循環</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-3-desc"><strong>Ellen MacArthur 循環經濟框架</strong><br>徹底落實「使用權優於所有權」及「模組化可拆解設計」，讓材料在生物循環與工業循環中持續流通。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="b2b" class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-gray-800 transition-colors">
-                <h3 class="text-2xl font-bold mb-6 text-dark dark:text-white"><i class="fa-solid fa-handshake mr-2"></i><span data-i18n="nav-b2b">多層次市場門戶與商業韌性服務</span></h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-bold text-xl mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-city mr-2"></i><span data-i18n="b2b-1">企業 ESG 與 B2B 合作專區</span></h4>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed" data-i18n="b2b-1-intro">本計畫不僅服務一般家長，我們更設計了專屬的機構方案，創造多贏的利益相關者生態圈：</p>
-                        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
-                            <li class="bg-gray-50 dark:bg-gray-700 p-3 rounded border-l-4 border-primary" data-i18n="b2b-1-1"><strong>托嬰中心與幼兒園：</strong> 採購此系統作為強大的「親師溝通工具」與空間優化亮點，提升招生競爭力。</li>
-                            <li class="bg-gray-50 dark:bg-gray-700 p-3 rounded border-l-4 border-primary" data-i18n="b2b-1-2"><strong>建設公司 / 代銷機構：</strong> 作為建案標配或「購屋加值服務」，將兒童發展適配系統直接寫入綠建築或 ESG 績效評估。</li>
-                            <li class="bg-gray-50 dark:bg-gray-700 p-3 rounded border-l-4 border-primary" data-i18n="b2b-1-3"><strong>政府政策串接：</strong> 主動對齊「113年兒童發展篩檢政策」，為高風險或需早療的家庭提供空間改善的對接方案。</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-4 text-accent dark:text-orange-400"><i class="fa-solid fa-tower-broadcast mr-2"></i><span data-i18n="b2b-2">斷網配套與「韌性設計」</span></h4>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed" data-i18n="b2b-2-intro">面對評審的壓力測試：「如果沒網路或 AI 該怎麼辦？」我們深知，科技只是輔助，溫暖的專業才是核心。</p>
-                        <div class="bg-orange-50 dark:bg-orange-900/30 p-5 rounded-lg">
-                            <h5 class="font-bold text-dark dark:text-white mb-2" data-i18n="b2b-2-box">韌性服務模式 (Offline Contingency)</h5>
-                            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3" data-i18n="b2b-2-box-desc">我們的核心服務絕不完全依賴數位網路。除了線上儀表板，我們提供：</p>
-                            <ul class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                                <li data-i18n="b2b-2-1"><strong>輕量紙本建議書：</strong> 評估完成後，將生成可列印的實體空間處方箋。</li>
-                                <li data-i18n="b2b-2-2"><strong>社區工作坊模式：</strong> 走入社區舉辦實體講座與工作坊，透過面對面指導家長進行居家微改造。</li>
-                                <li data-i18n="b2b-2-3"><strong>模組防呆設計：</strong> 家具本身的拆裝邏輯極度直觀，無需依賴連網 APP 指導即可獨立完成變更。</li>
-                            </ul>
+                    
+                    <p class="text-sm text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-gray-700 p-4 rounded border-l-4 border-secondary" data-i18n="case2-draw-desc">
+                        清晰標示板材的隱藏式卡榫與轉換邏輯，並附有無毒水性漆檢驗報告，用科學設計替家長精打細算。
+                    </p>
+                    
+                    <div class="mt-4 bg-orange-50 dark:bg-orange-900/30 p-4 rounded border-l-4 border-secondary flex items-start gap-3">
+                        <i class="fa-solid fa-earth-asia text-secondary dark:text-yellow-500 mt-1 text-xl"></i>
+                        <div>
+                            <h5 class="font-bold text-secondary dark:text-yellow-500 text-sm" data-i18n="case2-eco">社會貢獻與減碳效益</h5>
+                            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="case2-eco-desc">省去 4 件大型家具製造碳排 (約 250kg CO2e)，替年輕家庭節省逾 $13,000 支出，減輕育兒經濟壓力。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <main id="client-portal" class="max-w-4xl mx-auto p-4 md:p-6 hidden-section transition-all duration-300">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 border-b-2 border-secondary pb-2 gap-2">
-            <h2 class="text-2xl md:text-3xl font-bold text-secondary"><i class="fa-solid fa-clipboard-list mr-2"></i><span data-i18n="nav-submit">提出適配改造需求</span></h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary"><i class="fa-solid fa-clipboard-list mr-2"></i><span data-i18n="nav-submit">我要提出需求</span></h2>
             <span id="clientNameDisplay" class="text-gray-600 dark:text-gray-400 font-bold"></span>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-secondary transition-colors">
@@ -368,6 +273,7 @@
                 <button onclick="window.toggleFormType('simple')" id="btn-simple-form" class="py-2 px-4 md:px-6 font-bold text-base md:text-lg text-primary border-b-4 border-primary focus:outline-none transition-colors whitespace-nowrap" data-i18n="tab-simple">簡單填寫</button>
                 <button onclick="window.toggleFormType('detailed')" id="btn-detailed-form" class="py-2 px-4 md:px-6 font-bold text-base md:text-lg text-gray-400 border-b-4 border-transparent hover:text-primary focus:outline-none transition-colors whitespace-nowrap" data-i18n="tab-detailed">仔細填寫</button>
             </div>
+            
             <div id="simpleFormContainer">
                 <form id="clientForm">
                     <div class="mb-4">
@@ -397,9 +303,10 @@
                     </button>
                 </form>
                 <div id="successMsg" class="hidden mt-4 p-4 bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400 rounded-lg text-center font-bold">
-                    <i class="fa-solid fa-check-circle mr-2"></i><span data-i18n="form-success">您的需求已成功送至資料庫，設計團隊將盡快與您聯繫！您可以至「我的專案」查看進度。</span>
+                    <i class="fa-solid fa-check-circle mr-2"></i><span data-i18n="form-success">您的需求已成功送至資料庫，設計團隊將盡快與您聯繫！</span>
                 </div>
             </div>
+            
             <div id="detailedFormContainer" class="hidden">
                 <p class="mb-4 text-gray-600 dark:text-gray-400"><i class="fa-solid fa-circle-info mr-2"></i><span data-i18n="form-iframe-info">請透過下方的詳細評估表單，協助我們更精準地掌握您與孩子的需求：</span></p>
                 <iframe src="https://verdant-cranachan-6821e8.netlify.app/" class="w-full h-[500px] md:h-[650px] border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-inner"></iframe>
@@ -408,25 +315,15 @@
     </main>
 
     <main id="client-projects" class="max-w-4xl mx-auto p-4 md:p-6 hidden-section transition-all duration-300">
-        <div class="flex justify-between items-end mb-6 border-b-2 border-secondary pb-2">
-            <h2 class="text-2xl md:text-3xl font-bold text-secondary"><i class="fa-solid fa-folder-open mr-2"></i><span data-i18n="nav-projects">我的專案</span></h2>
-        </div>
+        <h2 class="text-2xl font-bold text-secondary mb-4 border-b-2 border-secondary pb-2" data-i18n="nav-projects">我的專案</h2>
         <div class="space-y-4">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow border-l-4 border-yellow-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-colors">
                 <div>
                     <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded" data-i18n="proj-status1">處理中</span>
-                    <h3 class="text-xl font-bold mt-2 dark:text-white" data-i18n="proj-title1">客廳遊戲區防撞與收納適配</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">提交日期：2026-05-09 | 預算：$15,000</p>
+                    <h3 class="text-xl font-bold mt-2 dark:text-white" data-i18n="proj-title1">客廳遊戲區防撞適配</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">預算：$15,000</p>
                 </div>
                 <button class="w-full md:w-auto bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-dark dark:text-gray-200 px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition" data-i18n="proj-btn1">聯絡設計師</button>
-            </div>
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow border-l-4 border-green-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-colors">
-                <div>
-                    <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded" data-i18n="proj-status2">已完成</span>
-                    <h3 class="text-xl font-bold mt-2 dark:text-white" data-i18n="proj-title2">兩歲洗手台模組化建置</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">完工日期：2026-03-12</p>
-                </div>
-                <button class="w-full md:w-auto bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-dark dark:text-gray-200 px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition" data-i18n="proj-btn2">查看保固資訊</button>
             </div>
         </div>
     </main>
@@ -436,7 +333,7 @@
             <aside class="w-full md:w-64 bg-primary text-white rounded-2xl shadow-xl md:sticky md:top-24 shrink-0 overflow-hidden">
                 <div class="p-6 bg-dark bg-opacity-20 border-b border-gray-500 text-center">
                     <div class="w-16 h-16 bg-white text-primary rounded-full flex items-center justify-center text-3xl mx-auto mb-2"><i class="fa-solid fa-user-tie"></i></div>
-                    <span class="font-bold block">Chief Architect</span>
+                    <span class="font-bold block" id="designerNameDisplay">Chief Architect</span>
                     <span class="text-xs text-gray-300" data-i18n="nav-workstation">設計師工作站</span>
                 </div>
                 <nav class="flex md:flex-col p-4 gap-1 overflow-x-auto whitespace-nowrap md:whitespace-normal">
@@ -458,22 +355,17 @@
                     <button onclick="switchDesignerTab('submission')" id="btn-submission" class="sidebar-btn text-left px-4 py-2 rounded-lg transition hover:bg-white hover:bg-opacity-10 inline-block md:block">
                         <i class="fa-solid fa-cloud-arrow-up md:w-5 text-center mr-2"></i><span data-i18n="dsg-nav-2-3">專案繳件</span>
                     </button>
-
-                    <div class="hidden md:block text-xs font-bold text-gray-400 mt-4 mb-1 px-2 uppercase tracking-wider" data-i18n="dsg-nav-g3">3. 個人資訊</div>
-                    <button onclick="switchDesignerTab('profile')" id="btn-profile" class="sidebar-btn text-left px-4 py-2 rounded-lg transition hover:bg-white hover:bg-opacity-10 inline-block md:block">
-                        <i class="fa-solid fa-address-card md:w-5 text-center mr-2"></i><span data-i18n="dsg-nav-3-1">自我介紹</span>
-                    </button>
                 </nav>
             </aside>
 
             <section class="flex-1 w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl min-h-[600px] p-6 md:p-8 border-t-8 border-primary transition-colors">
+                
                 <div id="tab-my-jobs" class="designer-tab-content">
                     <h3 class="text-2xl font-bold mb-6 text-primary dark:text-green-400 border-b dark:border-gray-700 pb-2"><i class="fa-solid fa-folder-open mr-2"></i><span data-i18n="dsg-nav-1-1">我已接案</span></h3>
                     <div class="border dark:border-gray-600 rounded-lg p-4 flex flex-col md:flex-row justify-between items-start md:items-center hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition gap-4">
                         <div>
                             <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-bold" data-i18n="proj-status1">執行中</span>
                             <h4 class="font-bold text-lg mt-2 dark:text-white">林太太：玄關推車與收納系統</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">最後更新：今天 14:30</p>
                         </div>
                         <button onclick="switchDesignerTab('chat')" class="w-full md:w-auto bg-primary text-white px-4 py-2 rounded hover:bg-green-800 transition" data-i18n="dsg-btn-enter">進入專案</button>
                     </div>
@@ -484,7 +376,6 @@
                     <div class="border dark:border-gray-600 rounded-lg p-4 flex flex-col md:flex-row justify-between items-start md:items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition border-l-4 border-yellow-500 mb-4 gap-4">
                         <div>
                             <h4 class="font-bold text-lg dark:text-white" data-i18n="proj-title1">王先生：客廳遊戲區防撞與收納適配</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">預算：$15,000 | 孩童：3歲</p>
                         </div>
                         <button class="w-full md:w-auto bg-secondary text-dark font-bold px-4 py-2 rounded hover:bg-yellow-600 transition" data-i18n="dsg-btn-accept">接取此案</button>
                     </div>
@@ -493,16 +384,11 @@
                 <div id="tab-chat" class="designer-tab-content hidden flex flex-col h-[500px]">
                     <div class="flex justify-between items-center mb-4 border-b dark:border-gray-700 pb-2">
                         <h3 class="text-2xl font-bold text-primary dark:text-green-400"><i class="fa-solid fa-comments mr-2"></i><span data-i18n="dsg-nav-2-1">客戶聯絡</span> (林太太)</h3>
-                        <button onclick="switchDesignerTab('requirements')" class="text-sm text-blue-600 dark:text-blue-400 underline hover:text-blue-800" data-i18n="dsg-nav-2-2">查看需求單</button>
                     </div>
                     <div class="flex-1 bg-gray-50 dark:bg-gray-900 rounded-lg p-4 mb-4 overflow-y-auto border dark:border-gray-700">
-                        <div class="mb-4">
-                            <span class="text-xs text-gray-500 block mb-1">林太太 (客戶)</span>
-                            <div class="bg-white dark:bg-gray-800 dark:text-white border dark:border-gray-700 p-3 rounded-lg shadow-sm w-fit max-w-[80%] md:max-w-[60%]">設計師您好，請問玄關推車的輪子可以鎖死嗎？怕小孩推著玩。</div>
-                        </div>
                         <div class="mb-4 flex flex-col items-end">
                             <span class="text-xs text-gray-500 block mb-1">您</span>
-                            <div class="bg-primary text-white p-3 rounded-lg shadow-sm w-fit max-w-[80%] md:max-w-[60%]">您好，沒問題的，我們採用的模組化輪軸都配備安全鎖死裝置，可以防止幼兒滑動。</div>
+                            <div class="bg-primary text-white p-3 rounded-lg shadow-sm w-fit max-w-[80%] md:max-w-[60%]">您好，沒問題的，我們採用的模組化輪軸都配備安全鎖死裝置。</div>
                         </div>
                     </div>
                     <div class="flex gap-2">
@@ -514,74 +400,15 @@
                 <div id="tab-requirements" class="designer-tab-content hidden">
                     <h3 class="text-2xl font-bold mb-6 text-primary dark:text-green-400 border-b dark:border-gray-700 pb-2"><i class="fa-solid fa-file-invoice mr-2"></i><span data-i18n="dsg-nav-2-2">客戶需求</span></h3>
                     <div class="bg-light dark:bg-gray-700 p-6 rounded-xl border dark:border-gray-600">
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">客戶名稱</p><p class="font-bold text-lg dark:text-white">林太太</p></div>
-                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">預算評估</p><p class="font-bold text-lg text-accent dark:text-orange-400">$15,000</p></div>
-                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">孩童資訊</p><p class="font-bold dark:text-white">1人, 3歲</p></div>
-                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">提交時間</p><p class="font-bold dark:text-white">2026-05-08</p></div>
-                        </div>
-                        <hr class="mb-4 border-gray-300 dark:border-gray-600">
-                        <h4 class="font-bold mb-2 dark:text-white">主旨：玄關推車與收納系統</h4>
-                        <p class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">小孩現在出門都要自己拿鞋子跟外套，但目前的鞋櫃太高了。希望能有一個可移動的推車，下面放鞋子，上面可以掛小外套。輪子必須要能鎖死。</p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">客戶林太太的需求明細區...</p>
                     </div>
                 </div>
 
                 <div id="tab-submission" class="designer-tab-content hidden">
                     <h3 class="text-2xl font-bold mb-6 text-primary dark:text-green-400 border-b dark:border-gray-700 pb-2"><i class="fa-solid fa-cloud-arrow-up mr-2"></i><span data-i18n="dsg-nav-2-3">專案繳件</span></h3>
-                    <div class="bg-light dark:bg-gray-700 p-6 md:p-8 rounded-xl border border-gray-200 dark:border-gray-600">
-                        <form id="submissionForm">
-                            <div class="mb-5">
-                                <label class="block font-bold mb-2 text-dark dark:text-white">目標專案</label>
-                                <select class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:border-primary">
-                                    <option>林太太：玄關推車與收納系統 (執行中)</option>
-                                    <option>王先生：客廳遊戲區防撞與收納適配 (執行中)</option>
-                                </select>
-                            </div>
-                            <div class="mb-5">
-                                <label class="block font-bold mb-2 text-dark dark:text-white">繳交備註與文字說明</label>
-                                <textarea rows="5" placeholder="請填寫本次繳件的說明，例如：V1初版平面圖、模組組裝說明、材質變更確認..." class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:border-primary" required></textarea>
-                            </div>
-                            <div class="mb-8">
-                                <label class="block font-bold mb-2 text-dark dark:text-white">上傳設計圖 / PDF 報告</label>
-                                <div class="flex items-center justify-center w-full">
-                                    <label class="flex flex-col items-center justify-center w-full h-40 border-2 border-primary border-dashed rounded-lg cursor-pointer bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 transition duration-300">
-                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                            <i class="fa-solid fa-cloud-arrow-up text-4xl text-primary mb-3"></i>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-bold text-primary dark:text-green-400">點擊選擇檔案</span> 或將檔案拖曳至此</p>
-                                            <p class="text-xs text-gray-400">支援 PDF, PNG, JPG (單檔最大限制 10MB)</p>
-                                        </div>
-                                        <input type="file" class="hidden" accept=".pdf, image/png, image/jpeg" multiple />
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="button" class="w-full bg-primary text-white font-bold text-lg py-4 rounded-lg hover:bg-green-800 transition flex justify-center items-center shadow-md">
-                                <i class="fa-solid fa-check-circle mr-2"></i>確認並送出繳件
-                            </button>
-                        </form>
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 text-center text-gray-500">
+                        上傳圖紙區塊
                     </div>
-                </div>
-
-                <div id="tab-profile" class="designer-tab-content hidden">
-                    <h3 class="text-2xl font-bold mb-6 text-primary dark:text-green-400 border-b dark:border-gray-700 pb-2"><i class="fa-solid fa-address-card mr-2"></i><span data-i18n="dsg-nav-3-1">自我介紹</span></h3>
-                    <div class="mb-6 flex flex-col md:flex-row items-start md:items-center gap-4">
-                        <div class="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center text-4xl text-white"><i class="fa-solid fa-user"></i></div>
-                        <div>
-                            <button class="text-sm bg-gray-200 dark:bg-gray-700 dark:text-white px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600">更換頭像</button>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-bold mb-2 dark:text-white">顯示名稱</label>
-                        <input type="text" value="Chief Architect" class="w-full border dark:border-gray-600 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-bold mb-2 dark:text-white">專長領域</label>
-                        <input type="text" value="幼兒行為建築學、永續家具設計" class="w-full border dark:border-gray-600 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-bold mb-2 dark:text-white">對外自我介紹 (顯示給客戶看)</label>
-                        <textarea rows="5" class="w-full border dark:border-gray-600 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white">致力於打造讓孩子感受到尊重與安全的居家環境。我相信最好的設計，是能跟著孩子一起長大的設計。</textarea>
-                    </div>
-                    <button class="w-full md:w-auto bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-green-800 transition">儲存個人資訊</button>
                 </div>
             </section>
         </div>
@@ -590,82 +417,86 @@
     <footer class="bg-dark text-gray-300 py-8 mt-auto w-full transition-colors">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div>
-                <h4 class="text-white font-bold text-lg mb-2"><i class="fa-solid fa-seedling mr-2"></i><span data-i18n="nav-title">發展適配方舟計畫</span></h4>
-                <p class="text-sm" data-i18n="footer-sub">幼兒家庭空間成長共創訂閱服務</p>
+                <h4 class="text-white font-bold text-lg mb-1"><i class="fa-solid fa-seedling mr-2"></i><span data-i18n="nav-title">發展適配方舟計畫</span></h4>
             </div>
-            <div class="text-sm border-t border-gray-600 pt-4 md:border-t-0 md:pt-0 md:text-right w-full md:w-auto">
-                <p class="mb-2 text-yellow-500 font-bold" data-i18n="footer-authors">網站共同作者：林恩予、張馨翎、王子銓</p>
-                <p>&copy; 2026 Development Ark Project. All Rights Reserved.</p>
-                <p class="mt-1"><i class="fa-solid fa-scale-balanced mr-1"></i>智慧財產權聲明：翻印必究</p>
+            <div class="text-xs border-t border-gray-600 pt-4 md:border-t-0 md:pt-0 w-full md:w-auto">
+                <p>&copy; 2026 Development Ark Project. Co-authors: 林恩予, 張馨翎, 王子銓.</p>
             </div>
         </div>
     </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+        // Firebase Setup (保持不變)
         const firebaseConfig = {
             apiKey: "AIzaSyCPRgxhfmQ5Jnu1cV-pOYpRof3z9hg1LUk",
             authDomain: "block-6e02f.firebaseapp.com",
             projectId: "block-6e02f",
             storageBucket: "block-6e02f.firebasestorage.app",
             messagingSenderId: "957809724704",
-            appId: "1:957809724704:web:92f601c25699f8773a1b45",
-            measurementId: "G-QC7P6HB0TW"
+            appId: "1:957809724704:web:92f601c25699f8773a1b45"
         };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         // =========================================
-        // 超全面補齊的 JSON 字典檔
+        // 1. JSON 字典檔精簡版
         // =========================================
         const i18nDict = {
             zh: {
-                "nav-title": "發展適配方舟計畫", "nav-cases": "模組案例", "nav-knowledge": "專業知識", "nav-impact": "量化減碳數據", "nav-science": "科學專業框架", "nav-b2b": "B2B與韌性服務", 
-                "nav-client-login": "客戶登入/註冊", "nav-designer-login": "設計師登入", "nav-login": "客戶登入", "nav-designer": "設計師登入", 
+                "nav-title": "發展適配方舟計畫", "nav-features": "計畫亮點", "nav-cases": "模組案例", "nav-knowledge": "專業知識",
+                "nav-login": "客戶登入", "nav-client-login": "客戶登入", "nav-designer": "設計師登入", "nav-designer-login": "設計師登入", 
                 "nav-submit": "我要提出需求", "nav-projects": "我的專案", "nav-workstation": "設計師工作站", "nav-logout": "登出", 
-                "btn-cancel": "取消", "btn-login": "登入", "btn-switch-reg": "還沒有帳號？點此註冊", "btn-start": "立即免費註冊體驗",
+                "btn-cancel": "取消", "btn-login": "登入", "btn-switch-reg": "還沒有帳號？點此註冊",
                 
-                "hero-title": "幼兒家庭空間成長共創訂閱服務", "hero-subtitle": "我們不是傳統室內設計師。<br>我們是「幼保 × 建築」的兒童發展空間顧問。",
-                "start-title": "如何開始：第一步怎麼使用", "step1-title": "註冊與登入", "step1-desc": "點擊右上角的「客戶登入 / 註冊」，建立專屬於您家庭的帳號，開啟適配改造之旅。",
-                "step2-title": "填寫需求表單", "step2-desc": "進入「我要提出需求」專區，描述您家中空間的痛點以及孩子的年齡與發展狀況。",
-                "step3-title": "設計師接案與共創", "step3-desc": "我們的設計師會承接您的案件，透過「我的專案」與您進行線上對談與後續規劃。",
+                "hero-title": "幼兒家庭空間成長共創", "hero-sub": "我們不是傳統室內設計師，我們是結合「幼保 × 建築」的空間適配顧問。", "btn-start": "立即啟動計畫",
                 
-                "case-title": "模組化案例展示與出圖形式", "badge-main": "主打案例", "badge-ext": "延伸案例",
-                "case1-title": "可成長「共響洗手台系統」", "case1-desc": "大人的洗手台小孩搆不到？讓洗手台跟小孩一起長大。從 2 歲用到 10 歲，使用完後可無縫轉換為居家收納或植栽槽。",
-                "case1-chart": "15 年生命週期成本對比", "case1-draw": "專業設計出圖形式", "case1-draw-desc": "<strong>設計出圖規範：</strong>包含完整 3D 爆炸圖、五金節點大樣圖（Detail）、階段轉換組裝說明書，以及詳盡的材料碳足跡計算表（對齊 ISO 14067）。確保系統在每一次變形時，皆有精準的結構力學計算做後盾。",
-                "case-eco-title": "社會貢獻與減碳效益", "case1-eco-desc": "透過共響模組的延續使用，避免了 3 次以上的產品汰換。經 LCA（生命週期評估）估算，單套洗手台系統約可減少 <strong>120kg CO2e</strong> 的碳排放量，等同於為地球種下約 10 棵樹的吸碳量，並能有效降低 60% 的大型廢棄物體積，徹底實踐源頭減廢。",
+                "start-title": "如何開始", "step1-title": "註冊登入", "step1-desc": "建立專屬帳號，開啟適配改造。",
+                "step2-title": "填寫需求", "step2-desc": "描述空間痛點與孩子發展狀況。", "step3-title": "設計共創", "step3-desc": "設計師接案，線上對談與規劃。",
                 
-                "case2-title": "0~12+歲「成長型多功能嬰兒床」", "case2-desc": "從新生兒的安全包覆、幼童期的探索學習（結合多種感官探索牆），到學齡期的專屬沙發閱讀區。當孩子長大不再需要床鋪時，床體更可完全拆解，無縫重組為「成長紀錄牆」、「書架展示架」與「玩具收納箱」，徹底實踐零浪費的永續價值。",
-                "case2-chart": "12 年以上生命週期成本對比", "case2-draw": "結構力學與發展科學出圖形式", "case2-draw-desc": "<strong>設計出圖規範：</strong>視覺化呈現 0-12 歲的演進圖譜。系統化圖紙將清楚標示：結構板材如何從初期的「防護欄」，透過隱藏式卡榫轉換為兒童期的「觸覺/音樂牆」，最終重組為學齡期的「置物架」。",
-                "case2-eco-desc": "長達 12 年以上的陪伴計畫，直接省去購買 4 件不同階段家具所產生的製造與運輸碳足跡。預估單組嬰兒床系統在生命週期內可減少 <strong>250kg CO2e</strong> 碳排放。這不僅是環境的勝利，更能替年輕家庭省下超過 $13,000 元的支出，大幅減輕現代社會的育兒經濟壓力，創造永續共好的居住型態。",
+                "feat1-title": "ESG 循環減廢", "feat1-desc": "拒絕一次性過度裝潢，模組家具隨孩子成長無縫變形。",
+                "feat2-title": "實質量化減碳", "feat2-desc": "千戶訂閱預估年減 10 噸 CO2e，數據對齊 ISO 14067 國際標準。",
+                "feat3-title": "科學發展框架", "feat3-desc": "空間刺激參數嚴格對齊 WHO 兒童發展里程碑與感覺統合理論。",
+                "feat4-title": "B2B 與韌性服務", "feat4-desc": "支援托嬰中心建置、建商 ESG 綠標配，具備斷網紙本防呆配套。",
                 
-                "esg-title": "ESG 生活產業消費模式", "esg-desc": "我們的設計核心在於 <strong>「E (Environment) - 減少不必要的浪費」</strong>。透過系統性的發展適配評估，讓每一次的空間改造與消費，都精準對接孩子的成長所需，實現永續居住美學。",
-                "esg-reduce": "源頭減量 (Reduce)", "esg-reduce-desc": "拒絕過度裝潢與一次性家具。我們針對孩子當下發展需求提供「空間處方箋」，避免盲目施工或購買造成的資源與金錢浪費。",
-                "esg-reuse": "共享與循環 (Reuse)", "esg-reuse-desc": "獨創模組化系統，讓家具能伴隨孩子成長「變形」。前階段的組件可無縫轉換為下階段的居家收納，落實產品生命週期的極大化。",
-                "esg-refuse": "精準消費 (Refuse)", "esg-refuse-desc": "透過專業幼保評估，幫您篩選並拒絕「不需要的育兒神器」，將預算與地球資源保留給真正有助於孩童身心發展的核心環境配置。",
+                "case-title": "模組化適配案例", "badge-main": "主打案例", "badge-ext": "延伸案例",
+                "case1-title": "可成長「共響洗手台系統」", "case1-desc": "陪伴孩子從 2 歲用到 10 歲，退役後完美轉生為植栽槽或居家收納箱。",
+                "case1-chart": "15 年生命週期成本對比", "case1-draw": "工程力學出圖", 
+                "case1-draw-desc": "系統變形的每一次重組，皆備有精準的五金節點大樣圖 (Detail) 與結構承重數據計算，讓永續理念建構在扎實的工程科學上。",
+                "case1-eco": "社會貢獻與減碳效益", "case1-eco-desc": "免除至少 3 次產品汰換。單套減少約 120kg CO2e 碳排，大幅降低 60% 大型廢棄物體積。",
                 
-                "impact-desc": "我們用數據證明永續不只是口號。依據我們的影響力模型預估，當達到 <strong>1,000 戶家庭訂閱規模</strong>時，透過模組化延壽與源頭減廢，預計將產出極大的環境保護績效：",
-                "impact-li1-str": "年減 5-10 噸 CO2e 碳排放：", "impact-li1-txt": "相當於每年為地球種植了 250-500 棵樹的總吸碳量。",
-                "impact-li2-str": "杜絕「漂綠」的科學計算：", "impact-li2-txt": "所有生命週期數據指標均參考 ISO 14067 (產品碳足跡) 與 GRI 301/306 國際標準計算。",
-                "impact-box-title": "千戶訂閱影響力預估", "impact-box1": "年減 CO2e", "impact-box2": "等效樹木吸碳量",
+                "case2-title": "0~12+歲「多功能嬰兒床」", "case2-desc": "從防護嬰兒床 ➔ 探索感官牆 ➔ 兒童閱讀沙發 ➔ 最終拆解重組為展示書架。",
+                "case2-chart": "12 年以上成本對比", "case2-draw": "視覺化演進圖譜", 
+                "case2-draw-desc": "清晰標示板材的隱藏式卡榫與轉換邏輯，並附有無毒水性漆檢驗報告，用科學設計替家長精打細算。",
+                "case2-eco": "社會貢獻與減碳效益", "case2-eco-desc": "省去 4 件大型家具製造碳排 (約 250kg CO2e)，替年輕家庭節省逾 $13,000 支出，減輕育兒經濟壓力。",
                 
-                "sci-desc": "我們的每一項空間規劃與模組設計，背後皆具備嚴格的醫學、幼保與循環經濟理論支持：",
-                "sci-1": "發展科學", "sci-1-desc": "<strong>WHO 2022 兒童發展里程碑</strong><br>依據世界衛生組織公佈之大動作、精細動作、認知與社交發展標準，將不同年齡層所需之空間刺激寫入設計參數。",
-                "sci-2": "幼保專業", "sci-2-desc": "<strong>Ayres 感覺統合理論</strong><br>透過觸覺板、攀爬架等模組化設計，精準針對孩童的前庭覺、本體覺提供發展適配的環境處方箋。",
-                "sci-3": "永續循環", "sci-3-desc": "<strong>Ellen MacArthur 循環經濟框架</strong><br>徹底落實「使用權優於所有權」及「模組化可拆解設計」，讓材料在生物循環與工業循環中持續流通。",
+                "esg-title": "ESG 永續消費", "esg-desc": "核心理念：減少浪費，精準適配孩子成長。",
+                "esg-reduce": "源頭減量", "esg-reduce-desc": "提供空間處方箋，拒絕盲目購買與裝潢。",
+                "esg-reuse": "共享循環", "esg-reuse-desc": "模組化設計，家具隨孩子成長無縫變形。",
+                "esg-refuse": "精準消費", "esg-refuse-desc": "專業幼保評估，替您過濾不需要的育兒神器。",
                 
-                "b2b-1": "企業 ESG 與 B2B 合作專區", "b2b-1-intro": "本計畫不僅服務一般家長，我們更設計了專屬的機構方案，創造多贏的利益相關者生態圈：",
-                "b2b-1-1": "<strong>托嬰中心與幼兒園：</strong> 採購此系統作為強大的「親師溝通工具」與空間優化亮點，提升招生競爭力。",
-                "b2b-1-2": "<strong>建設公司 / 代銷機構：</strong> 作為建案標配或「購屋加值服務」，將兒童發展適配系統直接寫入綠建築或 ESG 績效評估。",
-                "b2b-1-3": "<strong>政府政策串接：</strong> 主動對齊「113年兒童發展篩檢政策」，為高風險或需早療的家庭提供空間改善的對接方案。",
-                "b2b-2": "斷網配套與「韌性設計」", "b2b-2-intro": "面對評審的壓力測試：「如果沒網路或 AI 該怎麼辦？」我們深知，科技只是輔助，溫暖的專業才是核心。",
+                "impact-title": "量化減碳儀表板", "impact-desc": "1,000 戶訂閱預估貢獻：",
+                "impact-li1-str": "年減 10 噸 CO2e：", "impact-li1-txt": "相當於每年為地球種植 500 棵樹。",
+                "impact-li2-str": "科學計算：", "impact-li2-txt": "參考 ISO 14067 與 GRI 國際標準。",
+                "impact-box1": "年減碳排", "impact-box2": "等效樹木", 
+                
+                "sci-title": "科學專業框架", "sci-desc": "具備醫學、幼保與循環經濟支持：",
+                "sci-1": "發展科學", "sci-1-desc": "對齊 WHO 兒童發展里程碑。", 
+                "sci-2": "幼保專業", "sci-2-desc": "導入 Ayres 感覺統合理論。",
+                "sci-3": "永續循環", "sci-3-desc": "遵循 Ellen MacArthur 循環經濟框架。", 
+                
+                "b2b-title": "B2B 與韌性服務", 
+                "b2b-1": "企業 ESG 合作", "b2b-1-intro": "本計畫不僅服務一般家長，我們更設計了專屬的機構方案，創造多贏的利益相關者生態圈：",
+                "b2b-1-1": "托嬰中心與幼兒園教具標配。",
+                "b2b-1-2": "建設公司建案標配與 ESG 評估。",
+                "b2b-1-3": "對齊政府兒童發展篩檢早療政策。",
+                "b2b-2": "斷網配套與韌性設計", "b2b-2-intro": "面對評審的壓力測試：「如果沒網路或 AI 該怎麼辦？」我們深知，科技只是輔助，溫暖的專業才是核心。",
                 "b2b-2-box": "韌性服務模式 (Offline Contingency)", "b2b-2-box-desc": "我們的核心服務絕不完全依賴數位網路。除了線上儀表板，我們提供：",
-                "b2b-2-1": "<strong>輕量紙本建議書：</strong> 評估完成後，將生成可列印的實體空間處方箋。",
-                "b2b-2-2": "<strong>社區工作坊模式：</strong> 走入社區舉辦實體講座與工作坊，透過面對面指導家長進行居家微改造。",
-                "b2b-2-3": "<strong>模組防呆設計：</strong> 家具本身的拆裝邏輯極度直觀，無需依賴連網 APP 指導即可獨立完成變更。",
+                "b2b-2-1": "<strong>輕量紙本建議書：</strong> 列印實體空間處方箋。",
+                "b2b-2-2": "<strong>社區工作坊：</strong> 實體指導居家微改造。",
+                "b2b-2-3": "<strong>防呆設計：</strong> 免連網 APP 即可獨立組裝變更。",
                 
                 "tab-simple": "簡單填寫", "tab-detailed": "仔細填寫", "form-subject": "空間痛點主旨", "form-kids": "孩童人數與年齡", "form-budget": "預算評估 (NTD)", "form-details": "詳細要求內容與幼兒發展狀況", "form-btn-submit": "發送評估需求", "form-success": "您的需求已成功送至資料庫，設計團隊將盡快與您聯繫！您可以至「我的專案」查看進度。", "form-iframe-info": "請透過下方的詳細評估表單，協助我們更精準地掌握您與孩子的需求：",
                 
@@ -676,57 +507,63 @@
                 "dsg-nav-g2": "2. 專案列表", "dsg-nav-2-1": "客戶聯絡", "dsg-nav-2-2": "客戶需求", "dsg-nav-2-3": "專案繳件",
                 "dsg-nav-g3": "3. 個人資訊", "dsg-nav-3-1": "自我介紹", "dsg-btn-enter": "進入專案", "dsg-btn-accept": "接取此案",
                 
-                "footer-sub": "幼兒家庭空間成長共創訂閱服務", "footer-authors": "網站共同作者：林恩予、張馨翎、王子銓",
-                
                 "table-stage": "階段", "table-total": "總計花費", "stage1-1": "幼兒期", "stage1-2": "成長期", "stage1-3": "青少年", "stage1-4": "退役轉生",
                 "cost-21k": "約 $21,000", "cost-12k": "約 $12,000", "stage2-1": "0~2歲 (睡眠)", "stage2-2": "2~8歲 (學習)", "stage2-3": "8~12歲 (成長)", "stage2-4": "12歲+ (再利用)",
                 "cost-31k": "約 $31,000", "cost-18k": "約 $18,000",
-                "chart-ds1": "快消/傳統模式", "chart-ds2": "模組系統",
-                "chart1-lbl": ['幼兒期', '成長期', '青少年', '退役轉生'], "chart2-lbl": ['0~2歲(睡眠)', '2~8歲(學習)', '8~12歲(成長)', '12歲+(再利用)']
+                "chart-ds1": "快消模式", "chart-ds2": "模組系統",
+                "chart1-lbl": ['幼兒期', '成長期', '青少年', '退役轉生'], "chart2-lbl": ['0~2歲', '2~8歲', '8~12歲', '12歲+']
             },
             en: {
-                "nav-title": "Ark Development Project", "nav-cases": "Modules", "nav-knowledge": "Knowledge", "nav-impact": "Impact", "nav-science": "Science Framework", "nav-b2b": "B2B Services", 
-                "nav-client-login": "Login / Sign Up", "nav-designer-login": "Designer Login", "nav-login": "Client Login", "nav-designer": "Designer Login", 
-                "nav-submit": "Submit Request", "nav-projects": "My Projects", "nav-workstation": "Workspace", "nav-logout": "Logout", 
+                "nav-title": "Ark Dev Project", "nav-features": "Core Values", "nav-cases": "Cases", "nav-knowledge": "Knowledge",
+                "nav-login": "Client Login", "nav-client-login": "Client Login", "nav-designer": "Designer Login", "nav-designer-login": "Designer Login",
+                "nav-submit": "Request", "nav-projects": "My Projects", "nav-workstation": "Workspace", "nav-logout": "Logout", 
                 "btn-cancel": "Cancel", "btn-login": "Login", "btn-switch-reg": "No account? Register here", "btn-start": "Start the Project",
                 
-                "hero-title": "Family Space Growth Subscription", "hero-subtitle": "We are not traditional interior designers.<br>We are Child Care × Architecture Space Consultants.",
-                "start-title": "How to Start", "step1-title": "Register & Login", "step1-desc": "Click top right to create your family account and start the adaptation journey.",
-                "step2-title": "Fill Request Form", "step2-desc": "Describe your space pain points and child's development status in the request area.",
-                "step3-title": "Design Co-creation", "step3-desc": "Designers will assist you online through 'My Projects' for further planning.",
+                "hero-title": "Family Space Co-creation", "hero-sub": "Child Care × Architecture Space Consultants.", 
                 
-                "case-title": "Modular Cases & Blueprints", "badge-main": "Main Case", "badge-ext": "Extended Case",
-                "case1-title": "Growth Sink System", "case1-desc": "Can't reach the adult sink? Let the sink grow with the child. From age 2 to 10, then transforms into a planter.",
-                "case1-chart": "15-Year Lifecycle Cost", "case1-draw": "Professional Blueprints", "case1-draw-desc": "<strong>Blueprint Standards:</strong> Includes 3D exploded views, hardware details, and ISO 14067 carbon footprints to ensure mechanical safety during transformation.",
-                "case-eco-title": "Social & Carbon Impact", "case1-eco-desc": "Saves 3 product replacements. Reduces approx <strong>120kg CO2e</strong> per unit (equals 10 trees' absorption) and cuts large waste by 60%.",
+                "start-title": "How to Start", "step1-title": "Register", "step1-desc": "Create an account to start your journey.",
+                "step2-title": "Request", "step2-desc": "Describe your space issues and child's needs.", "step3-title": "Co-create", "step3-desc": "Designers will assist you online.",
                 
-                "case2-title": "0-12 Yrs Multifunctional Crib", "case2-desc": "From crib ➔ sensory wall ➔ reading sofa ➔ finally dismantled and rebuilt into a display shelf. Zero waste.",
-                "case2-chart": "12-Year Lifecycle Cost", "case2-draw": "Visual Evolution Blueprints", "case2-draw-desc": "<strong>Blueprint Standards:</strong> Clearly shows hidden joints and logic from protection rail to sensory wall to shelf.",
-                "case2-eco-desc": "A 12-year companionship plan that avoids manufacturing 4 different furniture pieces. Reduces <strong>250kg CO2e</strong> and saves young families over $13,000 TWD.",
+                "feat1-title": "ESG Circular Economy", "feat1-desc": "Modular furniture transforms as children grow, avoiding waste.",
+                "feat2-title": "Carbon Impact", "feat2-desc": "Reduce 10 tons CO2e annually per 1k users (ISO 14067).",
+                "feat3-title": "Scientific Framework", "feat3-desc": "Parameters aligned with WHO milestones and Ayres theory.",
+                "feat4-title": "B2B Resilience", "feat4-desc": "ESG packages for developers & offline paper instructions.",
                 
-                "esg-title": "ESG Consumption Model", "esg-desc": "Our design core is <strong>'E (Environment) - Reducing waste'</strong>. Systematic evaluation aligns every modification with growth needs.",
-                "esg-reduce": "Reduce", "esg-reduce-desc": "Refuse over-decoration. We provide a 'space prescription' to avoid blind spending.",
-                "esg-reuse": "Reuse", "esg-reuse-desc": "Modular system lets furniture 'transform'. Early components become later storage.",
-                "esg-refuse": "Refuse", "esg-refuse-desc": "Professional filters help you refuse useless 'parenting gadgets' to save budget.",
+                "case-title": "Modular Adaptation Cases", "badge-main": "Main Case", "badge-ext": "Extended Case",
+                "case1-title": "Growth Sink System", "case1-desc": "Grows with kids from age 2 to 10, then turns into a planter.",
+                "case1-chart": "15-Year Cost Comparison", "case1-draw": "Engineering Blueprints", 
+                "case1-draw-desc": "Includes precise joint details and load-bearing data, grounding sustainability in solid engineering.",
+                "case1-eco": "Social & Carbon Impact", "case1-eco-desc": "Saves 3 replacements, 120kg CO2e per unit, and reduces large waste by 60%.",
                 
-                "impact-desc": "We prove sustainability with data. Estimated impact for <strong>1,000 subscribers</strong>:",
-                "impact-li1-str": "Reduce 5-10 tons CO2e annually:", "impact-li1-txt": "Equals 250-500 trees' carbon absorption.",
-                "impact-li2-str": "Scientific calculation avoiding 'greenwashing':", "impact-li2-txt": "All data refers to ISO 14067 & GRI standards.",
-                "impact-box-title": "1,000 Users Impact", "impact-box1": "Tons CO2e Reduced", "impact-box2": "Equivalent Trees",
+                "case2-title": "0-12 Yrs Multifunctional Crib", "case2-desc": "Crib ➔ Sensory Wall ➔ Sofa ➔ Display Shelf.",
+                "case2-chart": "12-Year Cost Comparison", "case2-draw": "Visual Blueprints", 
+                "case2-draw-desc": "Clear hidden joints logic with non-toxic paint certifications.",
+                "case2-eco": "Social & Carbon Impact", "case2-eco-desc": "Saves 4 furniture pieces (250kg CO2e) and cuts >$13,000 TWD in family expenses.",
                 
-                "sci-desc": "Our space planning and modules are backed by rigorous medical and circular economy theories:",
-                "sci-1": "Development", "sci-1-desc": "<strong>WHO 2022 Milestones</strong><br>Space stimuli parameters match motor and cognitive standards.",
-                "sci-2": "Child Care", "sci-2-desc": "<strong>Ayres Sensory Integration</strong><br>Precise environmental prescriptions via climbing frames.",
-                "sci-3": "Circular Economy", "sci-3-desc": "<strong>Ellen MacArthur Framework</strong><br>Implementing 'access over ownership' and modular dismantling.",
+                "esg-title": "ESG Consumption Model", "esg-desc": "Core: Reduce waste, adapt to child growth.",
+                "esg-reduce": "Reduce", "esg-reduce-desc": "Avoid unnecessary decoration and buying.",
+                "esg-reuse": "Reuse", "esg-reuse-desc": "Modular designs that transform as kids grow.",
+                "esg-refuse": "Refuse", "esg-refuse-desc": "Professional filters to refuse useless gadgets.",
                 
-                "b2b-1": "Enterprise ESG & B2B", "b2b-1-intro": "We also offer institutional plans for a multi-win ecosystem:",
-                "b2b-1-1": "<strong>Daycares & Kindergartens:</strong> A communication tool and space upgrade for enrollment.",
-                "b2b-1-2": "<strong>Developers:</strong> Built-in ESG performance for green buildings.",
-                "b2b-1-3": "<strong>Govt Policies:</strong> Aligned with 2024 Child Development Screening Policies.",
-                "b2b-2": "Offline Resilience Design", "b2b-2-intro": "What if there is no internet? Technology assists, but warm professionalism is core.",
+                "impact-title": "Carbon Dashboard", "impact-desc": "Estimated impact per 1,000 families:",
+                "impact-li1-str": "Reduce 10 tons CO2e:", "impact-li1-txt": "approx. 500 trees.",
+                "impact-li2-str": "Calculation:", "impact-li2-txt": "ISO 14067 & GRI standards.",
+                "impact-box1": "Tons CO2e Reduced", "impact-box2": "Equivalent Trees",
+                
+                "sci-title": "Scientific Framework", "sci-desc": "Backed by medicine, education, and economy:",
+                "sci-1": "Development", "sci-1-desc": "Aligns with WHO milestones.",
+                "sci-2": "Education", "sci-2-desc": "Ayres Sensory Integration Theory.",
+                "sci-3": "Sustainability", "sci-3-desc": "Ellen MacArthur Circular Economy.",
+                
+                "b2b-title": "B2B & Resilient Services", 
+                "b2b-1": "ESG Partnerships", "b2b-1-intro": "We also offer institutional plans for a multi-win ecosystem:",
+                "b2b-1-1": "Standard for daycares & kindergartens.",
+                "b2b-1-2": "Built-in ESG performance for green buildings.",
+                "b2b-1-3": "Aligned with Govt Child Development Policies.",
+                "b2b-2": "Offline Resilience", "b2b-2-intro": "What if there is no internet? Technology assists, but warm professionalism is core.",
                 "b2b-2-box": "Offline Contingency", "b2b-2-box-desc": "We do not entirely rely on networks. We provide:",
                 "b2b-2-1": "<strong>Paper prescriptions:</strong> Printable physical space plans.",
-                "b2b-2-2": "<strong>Community workshops:</strong> Face-to-face DIY modification guidance.",
+                "b2b-2-2": "<strong>Workshops:</strong> Face-to-face DIY modification guidance.",
                 "b2b-2-3": "<strong>Fool-proof modules:</strong> Intuitive assembly requiring no app connectivity.",
                 
                 "tab-simple": "Simple Form", "tab-detailed": "Detailed Form", "form-subject": "Space Issue Subject", "form-kids": "Kids Info (Qty, Age)", "form-budget": "Budget (NTD)", "form-details": "Detailed Needs & Development Status", "form-btn-submit": "Submit Request", "form-success": "Success! Our design team will contact you soon. Check 'My Projects'.", "form-iframe-info": "Please assist us via the detailed form below:",
@@ -738,10 +575,8 @@
                 "dsg-nav-g2": "2. Projects", "dsg-nav-2-1": "Client Chat", "dsg-nav-2-2": "Requirements", "dsg-nav-2-3": "Submissions",
                 "dsg-nav-g3": "3. Profile", "dsg-nav-3-1": "Introduction", "dsg-btn-enter": "Enter Project", "dsg-btn-accept": "Accept Job",
                 
-                "footer-sub": "Family Space Growth Subscription Service", "footer-authors": "Authors: Lin En-Yu, Chang Hsin-Ling, Wang Tzu-Chuan",
-                
                 "table-stage": "Stage", "table-total": "Total Cost", "stage1-1": "Toddler", "stage1-2": "Child", "stage1-3": "Teen", "stage1-4": "Repurposed",
-                "cost-21k": "Approx. $21,000", "cost-12k": "Approx. $12,000", "stage2-1": "0-2 Yrs (Sleep)", "stage2-2": "2-8 Yrs (Learn)", "stage2-3": "8-12 Yrs (Grow)", "stage2-4": "12+ Yrs (Reuse)",
+                "cost-21k": "Approx. $21,000", "cost-12k": "Approx. $12,000", "stage2-1": "0-2 Yrs", "stage2-2": "2-8 Yrs", "stage2-3": "8-12 Yrs", "stage2-4": "12+ Yrs",
                 "cost-31k": "Approx. $31,000", "cost-18k": "Approx. $18,000",
                 "chart-ds1": "Traditional Model", "chart-ds2": "Modular System",
                 "chart1-lbl": ['Toddler', 'Child', 'Teen', 'Repurposed'], "chart2-lbl": ['0-2 Yrs', '2-8 Yrs', '8-12 Yrs', '12+ Yrs']
@@ -779,23 +614,167 @@
             const isDark = document.documentElement.classList.contains('dark');
             ['darkModeIcon', 'mobileDarkModeIcon'].forEach(id => {
                 const icon = document.getElementById(id);
-                if(icon) {
-                    icon.className = isDark ? "fa-solid fa-sun text-yellow-300" : "fa-solid fa-moon";
-                }
+                if(icon) icon.className = isDark ? "fa-solid fa-sun text-yellow-300" : "fa-solid fa-moon";
             });
             Chart.defaults.color = isDark ? '#D1D5DB' : '#666';
             if(window.costChartInstance) window.costChartInstance.update();
             if(window.costChartCribInstance) window.costChartCribInstance.update();
         };
 
-        window.showSection = function(sectionId) {
-            document.querySelectorAll('main').forEach(el => el.classList.add('hidden-section'));
-            document.getElementById(sectionId).classList.remove('hidden-section');
-            window.scrollTo(0, 0);
-        };
-        window.toggleMobileMenu = function() { document.getElementById('navMenu').classList.toggle('hidden'); };
-        window.closeMobileMenu = function() { if(window.innerWidth < 768) document.getElementById('navMenu').classList.add('hidden'); };
+        // UI Toggles
+        window.showSection = id => { document.querySelectorAll('main').forEach(el => el.classList.add('hidden-section')); document.getElementById(id).classList.remove('hidden-section'); window.scrollTo(0,0); };
+        window.toggleMobileMenu = () => document.getElementById('navMenu').classList.toggle('hidden');
+        window.closeMobileMenu = () => { if(window.innerWidth < 768) document.getElementById('navMenu').classList.add('hidden'); };
+        
+        let isRegisterMode = false;
+        window.openDesignerModal = () => document.getElementById('designerModal').classList.remove('hidden');
+        window.closeDesignerModal = () => document.getElementById('designerModal').classList.add('hidden');
+        window.openClientModal = () => { isRegisterMode = false; updateClientModalUI(); document.getElementById('clientModal').classList.remove('hidden'); };
+        window.closeClientModal = () => document.getElementById('clientModal').classList.add('hidden');
+        window.toggleClientAuthMode = () => { isRegisterMode = !isRegisterMode; updateClientModalUI(); };
 
+        function updateClientModalUI() {
+            document.getElementById('clientModalTitle').innerHTML = isRegisterMode ? '客戶註冊' : '客戶登入';
+            document.getElementById('clientSubmitBtn').innerText = isRegisterMode ? '註冊' : '登入';
+            document.getElementById('toggleAuthModeBtn').innerText = isRegisterMode ? '已有帳號？點此登入' : '還沒有帳號？點此註冊';
+            document.getElementById('registerFields').style.display = isRegisterMode ? 'block' : 'none';
+        }
+
+        window.updateNavUI = () => {
+            const role = localStorage.getItem('userRole');
+            const currentUsername = localStorage.getItem('currentUsername');
+            ['navClientLoginBtn','navDesignerLoginBtn','navClientPortalBtn','navClientProjectsBtn','navDesignerPortalBtn','navLogoutBtn'].forEach(id => document.getElementById(id).classList.add('hidden'));
+            
+            if (role === 'designer') {
+                ['navDesignerPortalBtn','navLogoutBtn'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+                const designerName = document.getElementById('designerNameDisplay');
+                if (designerName) designerName.innerText = currentUsername;
+            } else if (role === 'client') {
+                ['navClientPortalBtn','navClientProjectsBtn','navLogoutBtn'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+                const nameDisplay = document.getElementById('clientNameDisplay');
+                if(nameDisplay) nameDisplay.innerText = `歡迎，${currentUsername}`;
+            } else {
+                ['navClientLoginBtn','navDesignerLoginBtn'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+            }
+        };
+
+        // =========================================
+        // 登入驗證邏輯 (包含 11/11 與 22/22)
+        // =========================================
+        window.submitClientAuth = () => {
+            const user = document.getElementById('clientUsername').value.trim();
+            const pass = document.getElementById('clientPassword').value.trim();
+            const errMsg = document.getElementById('clientErrorMsg');
+            
+            if (!isRegisterMode) {
+                // 登入模式：驗證測試帳號 22 / 22
+                if (user === '22' && pass === '22') {
+                    localStorage.setItem('userRole', 'client'); 
+                    localStorage.setItem('currentUsername', 'User_22'); 
+                    window.closeClientModal(); 
+                    window.updateNavUI(); 
+                    window.showSection('client-projects');
+                    errMsg.classList.add('hidden');
+                } else {
+                    errMsg.innerText = "帳號或密碼錯誤 (測試帳號請輸入 22 / 22)";
+                    errMsg.classList.remove('hidden');
+                }
+            } else {
+                // 註冊模式：模擬成功
+                localStorage.setItem('userRole', 'client'); 
+                localStorage.setItem('currentUsername', user || 'NewUser'); 
+                window.closeClientModal(); 
+                window.updateNavUI(); 
+                window.showSection('client-projects');
+                errMsg.classList.add('hidden');
+            }
+        };
+
+        window.attemptDesignerLogin = () => {
+            const user = document.getElementById('designerUsername').value.trim();
+            const pass = document.getElementById('designerPassword').value.trim();
+            const errMsg = document.getElementById('designerLoginError');
+            
+            // 驗證設計師帳號 11/11 或 71101mi/5462
+            if((user === '71101mi' && pass === '5462') || (user === '11' && pass === '11')) {
+                localStorage.setItem('userRole', 'designer'); 
+                localStorage.setItem('currentUsername', user === '11' ? 'Designer_11' : 'Chief Architect'); 
+                window.closeDesignerModal(); 
+                window.updateNavUI(); 
+                window.showSection('designer-portal');
+                errMsg.classList.add('hidden');
+            } else {
+                errMsg.innerText = "帳號或密碼錯誤 (測試帳號請輸入 11 / 11)";
+                errMsg.classList.remove('hidden');
+            }
+        };
+
+        window.logout = () => { localStorage.clear(); window.updateNavUI(); window.showSection('home'); };
+
+        window.onload = function() {
+            window.updateNavUI();
+            const role = localStorage.getItem('userRole');
+            if (role === 'designer') window.showSection('designer-portal');
+            else if (role === 'client') window.showSection('client-projects');
+            else window.showSection('home');
+
+            Chart.defaults.color = document.documentElement.classList.contains('dark') ? '#D1D5DB' : '#666';
+
+            // Chart 1
+            const ctx1 = document.getElementById('costChart');
+            if(ctx1) {
+                window.costChartInstance = new Chart(ctx1.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: i18nDict['zh']['chart1-lbl'],
+                        datasets: [
+                            { label: i18nDict['zh']['chart-ds1'], data: [3000, 9000, 19000, 21000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
+                            { label: i18nDict['zh']['chart-ds2'], data: [10000, 10000, 12000, 12000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // Chart 2
+            const ctx2 = document.getElementById('costChartCrib');
+            if(ctx2) {
+                window.costChartCribInstance = new Chart(ctx2.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: i18nDict['zh']['chart2-lbl'],
+                        datasets: [
+                            { label: i18nDict['zh']['chart-ds1'], data: [6000, 14000, 26000, 31000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
+                            { label: i18nDict['zh']['chart-ds2'], data: [18000, 18000, 18000, 18000], borderColor: '#D0A97E', backgroundColor: 'rgba(208, 169, 126, 0.2)', borderWidth: 3, fill: true, tension: 0.3 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+        };
+
+        // Client Form Submission
+        const clientForm = document.getElementById('clientForm');
+        if(clientForm) {
+            clientForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                btn.innerHTML = '傳送中...'; btn.disabled = true;
+                try {
+                    await addDoc(collection(db, "design_requests"), {
+                        clientAccount: localStorage.getItem('currentUsername'),
+                        subject: document.getElementById('reqSubject').value,
+                        details: document.getElementById('reqDetails').value,
+                        createdAt: serverTimestamp()
+                    });
+                    document.getElementById('successMsg').classList.remove('hidden');
+                    clientForm.reset();
+                } catch (error) { console.error(error); } 
+                finally { btn.innerHTML = i18nDict[window.currentLang]['form-btn-submit']; btn.disabled = false; }
+            });
+        }
+        
+        // Form Type Toggles
         window.toggleFormType = function(type) {
             const btnSimple = document.getElementById('btn-simple-form');
             const btnDetailed = document.getElementById('btn-detailed-form');
@@ -818,7 +797,7 @@
                 containerSimple.classList.add('hidden');
             }
         };
-
+        
         window.switchDesignerTab = function(tabId) {
             document.querySelectorAll('.designer-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.sidebar-btn').forEach(el => el.classList.remove('sidebar-active'));
@@ -826,157 +805,6 @@
             const activeBtn = document.getElementById('btn-' + tabId);
             if(activeBtn) activeBtn.classList.add('sidebar-active');
         };
-
-        let isRegisterMode = false;
-        window.openDesignerModal = function() { document.getElementById('designerModal').classList.remove('hidden'); };
-        window.closeDesignerModal = function() { document.getElementById('designerModal').classList.add('hidden'); };
-        window.openClientModal = function() { isRegisterMode = false; updateClientModalUI(); document.getElementById('clientModal').classList.remove('hidden'); };
-        window.closeClientModal = function() { document.getElementById('clientModal').classList.add('hidden'); };
-        window.toggleClientAuthMode = function() { isRegisterMode = !isRegisterMode; updateClientModalUI(); };
-
-        function updateClientModalUI() {
-            const title = document.getElementById('clientModalTitle');
-            const submitBtn = document.getElementById('clientSubmitBtn');
-            const toggleBtn = document.getElementById('toggleAuthModeBtn');
-            const registerFields = document.getElementById('registerFields');
-            if (isRegisterMode) {
-                title.innerHTML = i18nDict[window.currentLang]['nav-client-login'].replace('登入', '註冊');
-                submitBtn.innerText = i18nDict[window.currentLang]['nav-client-login'].replace('登入', '註冊');
-                toggleBtn.innerText = i18nDict[window.currentLang]['btn-login'];
-                registerFields.classList.remove('hidden');
-            } else {
-                title.innerHTML = i18nDict[window.currentLang]['nav-client-login'];
-                submitBtn.innerText = i18nDict[window.currentLang]['btn-login'];
-                toggleBtn.innerText = i18nDict[window.currentLang]['btn-switch-reg'];
-                registerFields.classList.add('hidden');
-            }
-        }
-
-        window.updateNavUI = function() {
-            const role = localStorage.getItem('userRole');
-            const currentUsername = localStorage.getItem('currentUsername');
-            
-            document.getElementById('navClientLoginBtn').classList.add('hidden');
-            document.getElementById('navDesignerLoginBtn').classList.add('hidden');
-            document.getElementById('navClientPortalBtn').classList.add('hidden');
-            document.getElementById('navClientProjectsBtn').classList.add('hidden');
-            document.getElementById('navDesignerPortalBtn').classList.add('hidden');
-            document.getElementById('navLogoutBtn').classList.add('hidden');
-
-            if (role === 'designer') {
-                document.getElementById('navDesignerPortalBtn').classList.remove('hidden');
-                document.getElementById('navLogoutBtn').classList.remove('hidden');
-                switchDesignerTab('my-jobs');
-            } else if (role === 'client') {
-                document.getElementById('navClientPortalBtn').classList.remove('hidden');
-                document.getElementById('navClientProjectsBtn').classList.remove('hidden');
-                document.getElementById('navLogoutBtn').classList.remove('hidden');
-                const nameDisplay = document.getElementById('clientNameDisplay');
-                if(nameDisplay) nameDisplay.innerText = `歡迎，${currentUsername}`;
-            } else {
-                document.getElementById('navClientLoginBtn').classList.remove('hidden');
-                document.getElementById('navDesignerLoginBtn').classList.remove('hidden');
-            }
-        };
-
-        window.submitClientAuth = function() {
-            const user = document.getElementById('clientUsername').value.trim();
-            if(user) {
-                localStorage.setItem('userRole', 'client');
-                localStorage.setItem('currentUsername', user);
-                window.closeClientModal();
-                window.updateNavUI();
-                window.showSection('client-projects');
-            }
-        };
-
-        window.attemptDesignerLogin = function() {
-            if(document.getElementById('designerUsername').value === '71101mi') {
-                localStorage.setItem('userRole', 'designer');
-                localStorage.setItem('currentUsername', 'Chief Architect');
-                window.closeDesignerModal();
-                window.updateNavUI();
-                window.showSection('designer-portal');
-            } else {
-                document.getElementById('designerLoginError').classList.remove('hidden');
-            }
-        };
-
-        window.logout = function() {
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('currentUsername');
-            window.updateNavUI();
-            window.showSection('home');
-        };
-
-        window.onload = function() {
-            window.updateNavUI();
-            const role = localStorage.getItem('userRole');
-            if (role === 'designer') window.showSection('designer-portal');
-            else if (role === 'client') window.showSection('client-projects');
-            else window.showSection('home');
-
-            Chart.defaults.color = document.documentElement.classList.contains('dark') ? '#D1D5DB' : '#666';
-
-            const ctx1 = document.getElementById('costChart');
-            if(ctx1) {
-                window.costChartInstance = new Chart(ctx1.getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: i18nDict['zh']['chart1-lbl'],
-                        datasets: [
-                            { label: i18nDict['zh']['chart-ds1'], data: [3000, 9000, 19000, 21000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
-                            { label: i18nDict['zh']['chart-ds2'], data: [10000, 10000, 12000, 12000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
-                        ]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            }
-
-            const ctx2 = document.getElementById('costChartCrib');
-            if(ctx2) {
-                window.costChartCribInstance = new Chart(ctx2.getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: i18nDict['zh']['chart2-lbl'],
-                        datasets: [
-                            { label: i18nDict['zh']['chart-ds1'], data: [6000, 14000, 26000, 31000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
-                            { label: i18nDict['zh']['chart-ds2'], data: [18000, 18000, 18000, 18000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
-                        ]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            }
-        };
-
-        const clientForm = document.getElementById('clientForm');
-        if(clientForm) {
-            clientForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const submitBtn = document.getElementById('submitBtn');
-                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>傳送中...';
-                submitBtn.disabled = true;
-
-                try {
-                    await addDoc(collection(db, "design_requests"), {
-                        clientAccount: localStorage.getItem('currentUsername'),
-                        subject: document.getElementById('reqSubject').value,
-                        kidsInfo: document.getElementById('reqKids').value,
-                        budget: document.getElementById('reqBudget').value,
-                        details: document.getElementById('reqDetails').value,
-                        status: "open",
-                        createdAt: serverTimestamp()
-                    });
-                    document.getElementById('successMsg').classList.remove('hidden');
-                    clientForm.reset();
-                } catch (error) {
-                    console.error(error);
-                } finally {
-                    submitBtn.innerHTML = i18nDict[window.currentLang]['form-btn-submit'];
-                    submitBtn.disabled = false;
-                }
-            });
-        }
     </script>
 </body>
 </html>
