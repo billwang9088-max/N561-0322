@@ -49,10 +49,8 @@
             </div>
 
             <div id="navMenu" class="hidden absolute top-full left-0 w-full bg-primary md:static md:w-auto md:flex flex-col md:flex-row items-center gap-3 p-4 md:p-0 shadow-lg md:shadow-none transition-all z-40">
-                <a href="#impact" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-chart-simple mr-1"></i><span data-i18n="nav-impact">量化減碳數據</span></a>
-                <a href="#science" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-microscope mr-1"></i><span data-i18n="nav-science">科學專業框架</span></a>
-                <a href="#b2b" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-handshake mr-1"></i><span data-i18n="nav-b2b">B2B與韌性服務</span></a>
                 <a href="#cases" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-layer-group mr-1"></i><span data-i18n="nav-cases">模組案例</span></a>
+                <a href="#knowledge" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold block py-2 md:py-0" onclick="window.closeMobileMenu();"><i class="fa-solid fa-book-open mr-1"></i><span data-i18n="nav-knowledge">專業知識</span></a>
 
                 <button onclick="window.toggleLanguage()" class="w-full md:w-auto hover:text-secondary transition text-sm font-bold border-t md:border-t-0 md:border-l border-white/30 pt-3 mt-2 md:pt-0 md:mt-0 md:pl-3 md:ml-2">
                     <i class="fa-solid fa-globe mr-1"></i><span id="langBtnText">EN / 中</span>
@@ -142,38 +140,157 @@
             </div>
             <div class="text-center mt-8">
                 <button onclick="window.openClientModal(); window.scrollTo(0,0);" class="bg-secondary text-dark font-bold text-lg px-8 py-3 rounded-full hover:bg-yellow-600 transition shadow-md animate-bounce w-full md:w-auto">
-                    <span data-i18n="btn-start">立即免費註冊體驗</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <span data-i18n="btn-start">立即啟動計畫</span> <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
         </section>
 
-        <section class="mb-12 max-w-6xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-l-8 border-primary transition-colors">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-leaf mr-2"></i><span data-i18n="esg-title">ESG 生活產業消費模式</span></h2>
-                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6" data-i18n="esg-desc">我們的設計核心在於 <strong>「E (Environment) - 減少不必要的浪費」</strong>。透過系統性的發展適配評估，讓每一次的空間改造與消費，都精準對接孩子的成長所需，實現永續居住美學。</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-green-700 dark:text-green-400 mb-3"><i class="fa-solid fa-recycle"></i></div>
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reduce">源頭減量 (Reduce)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reduce-desc">拒絕過度裝潢與一次性家具。我們針對孩子當下發展需求提供「空間處方箋」，避免盲目施工或購買造成的資源與金錢浪費。</p>
+        <section id="cases">
+            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-8 max-w-6xl mx-auto"><i class="fa-solid fa-layer-group mr-2"></i><span data-i18n="case-title">模組化案例展示與出圖形式</span></h2>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col transition-colors max-w-6xl mx-auto">
+                
+                <div class="w-full aspect-[16/9] bg-gray-100 dark:bg-gray-700 flex justify-center items-center border-b dark:border-gray-600">
+                    <img src="p1cover.jpg" alt="洗手台空間" class="object-cover w-full h-full">
+                </div>
+                
+                <div class="p-6 md:p-8 w-full flex flex-col">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-main">主打案例</span>
+                        <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case1-title">可成長「共響洗手台系統」</h3>
                     </div>
-                    <div class="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-yellow-600 dark:text-yellow-400 mb-3"><i class="fa-solid fa-arrows-rotate"></i></div>
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reuse">共享與循環 (Reuse)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reuse-desc">獨創模組化系統，讓家具能伴隨孩子成長「變形」。前階段的組件可無縫轉換為下階段的居家收納，落實產品生命週期的極大化。</p>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case1-desc">大人的洗手台小孩搆不到？讓洗手台跟小孩一起長大。從 2 歲用到 10 歲，使用完後可無縫轉換為居家收納或植栽槽。</p>
+                    
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-lg shadow-sm border dark:border-gray-600">
+                        <h4 class="font-bold text-center mb-6 dark:text-white text-lg"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="case1-chart">15 年生命週期成本對比</span></h4>
+                        <div class="flex flex-col lg:flex-row gap-8">
+                            <div class="w-full lg:w-1/2 overflow-hidden relative h-72">
+                                <canvas id="costChart"></canvas>
+                            </div>
+                            <div class="w-full lg:w-1/2 overflow-x-auto flex items-center">
+                                <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-600 shadow-sm">
+                                    <thead class="bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+                                        <tr>
+                                            <th class="p-4 whitespace-nowrap" data-i18n="table-stage">階段</th>
+                                            <th class="p-4 text-red-600 dark:text-red-400 whitespace-nowrap" data-i18n="chart-ds1">快消模式</th>
+                                            <th class="p-4 text-primary dark:text-green-400 whitespace-nowrap" data-i18n="chart-ds2">模組系統</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dark:text-gray-300">
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-1">幼兒期</td><td class="p-4">$3,000</td><td class="p-4">$10,000</td></tr>
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-2">成长期</td><td class="p-4">+$6,000</td><td class="p-4">$0</td></tr>
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-3">青少年</td><td class="p-4">+$10,000</td><td class="p-4">+$2,000</td></tr>
+                                        <tr><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage1-4">退役轉生</td><td class="p-4">+$2,000</td><td class="p-4">$0</td></tr>
+                                        <tr class="bg-gray-100 dark:bg-gray-900 font-bold border-t dark:border-gray-600 text-base"><td class="p-4 whitespace-nowrap" data-i18n="table-total">總計花費</td><td class="p-4 text-red-600 dark:text-red-400" data-i18n="cost-21k">約 $21,000</td><td class="p-4 text-primary dark:text-green-400" data-i18n="cost-12k">約 $12,000</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg text-center">
-                        <div class="text-4xl text-accent dark:text-orange-400 mb-3"><i class="fa-solid fa-bullseye"></i></div>
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-refuse">精準消費 (Refuse)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-refuse-desc">透過專業幼保評估，幫您篩選並拒絕「不需要的育兒神器」，將預算與地球資源保留給真正有助於孩童身心發展的核心環境配置。</p>
+                </div>
+
+                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
+                    <h4 class="font-bold text-lg mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case1-draw">專業設計出圖形式</span></h4>
+                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
+                        <img src="p1.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
+                    </div>
+                    <p class="text-base text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-primary leading-relaxed shadow-sm" data-i18n="case1-draw-desc">
+                        <strong>設計出圖規範：</strong>包含完整 3D 爆炸圖、五金節點大樣圖（Detail）、階段轉換組裝說明書，以及詳盡的材料碳足跡計算表（對齊 ISO 14067）。確保系統在每一次變形時，皆有精準的結構力學計算做後盾。
+                    </p>
+                    <div class="mt-6 bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border-l-4 border-green-600 shadow-sm">
+                        <h5 class="font-bold text-green-800 dark:text-green-400 mb-2 text-lg"><i class="fa-solid fa-earth-asia mr-2"></i><span data-i18n="case-eco-title">社會貢獻與減碳效益</span></h5>
+                        <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed" data-i18n="case1-eco-desc">透過共響模組的延續使用，避免了 3 次以上的產品汰換。經 LCA（生命週期評估）估算，單套洗手台系統約可減少 <strong>120kg CO2e</strong> 的碳排放量，等同於為地球種下約 10 棵樹的吸碳量，並能有效降低 60% 的大型廢棄物體積，徹底實踐源頭減廢。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col border-t-4 border-secondary transition-colors max-w-6xl mx-auto">
+                
+                <div class="w-full aspect-[16/9] bg-gray-100 dark:bg-gray-700 flex justify-center items-center border-b dark:border-gray-600">
+                    <img src="p2cover.jpg" alt="成長型多功能嬰兒床" class="object-cover w-full h-full">
+                </div>
+                
+                <div class="p-6 md:p-8 w-full flex flex-col">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-secondary text-dark px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-ext">延伸案例</span>
+                        <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case2-title">0~12+歲「成長型多功能嬰兒床」</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case2-desc">從新生兒的安全包覆、幼童期的探索學習（結合多種感官探索牆），到學齡期的專屬沙發閱讀區。當孩子長大不再需要床鋪時，床體更可完全拆解，無縫重組為「成長紀錄牆」、「書架展示架」與「玩具收納箱」，徹底實踐零浪費的永續價值。</p>
+                    
+                    <div class="bg-light dark:bg-gray-700 p-6 rounded-lg shadow-sm border dark:border-gray-600">
+                        <h4 class="font-bold text-center mb-6 dark:text-white text-lg"><i class="fa-solid fa-chart-pie mr-2"></i><span data-i18n="case2-chart">12 年以上生命週期成本對比</span></h4>
+                        <div class="flex flex-col lg:flex-row gap-8">
+                            <div class="w-full lg:w-1/2 overflow-hidden relative h-72">
+                                <canvas id="costChartCrib"></canvas>
+                            </div>
+                            <div class="w-full lg:w-1/2 overflow-x-auto flex items-center">
+                                <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-600 shadow-sm">
+                                    <thead class="bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+                                        <tr>
+                                            <th class="p-4 whitespace-nowrap" data-i18n="table-stage">發展階段</th>
+                                            <th class="p-4 text-red-600 dark:text-red-400 whitespace-nowrap" data-i18n="chart-ds1">傳統替換模式</th>
+                                            <th class="p-4 text-primary dark:text-green-400 whitespace-nowrap" data-i18n="chart-ds2">多功能成長系統</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dark:text-gray-300">
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-1">0~2歲 (睡眠)</td><td class="p-4">$6,000</td><td class="p-4">$18,000</td></tr>
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-2">2~8歲 (學習)</td><td class="p-4">+$8,000</td><td class="p-4">$0</td></tr>
+                                        <tr class="border-b dark:border-gray-700"><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-3">8~12歲 (成長)</td><td class="p-4">+$12,000</td><td class="p-4">$0</td></tr>
+                                        <tr><td class="p-4 font-bold whitespace-nowrap" data-i18n="stage2-4">12歲+ (再利用)</td><td class="p-4">+$5,000</td><td class="p-4">$0</td></tr>
+                                        <tr class="bg-gray-100 dark:bg-gray-900 font-bold border-t dark:border-gray-600 text-base"><td class="p-4 whitespace-nowrap" data-i18n="table-total">總計累積花費</td><td class="p-4 text-red-600 dark:text-red-400" data-i18n="cost-31k">約 $31,000</td><td class="p-4 text-primary dark:text-green-400" data-i18n="cost-18k">約 $18,000</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
+                    <h4 class="font-bold text-lg mb-4 text-secondary dark:text-yellow-500"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case2-draw">結構力學與發展科學出圖形式</span></h4>
+                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
+                        <img src="p2.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
+                    </div>
+                    <p class="text-base text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-secondary leading-relaxed shadow-sm" data-i18n="case2-draw-desc">
+                        <strong>設計出圖規範：</strong>視覺化呈現 0-12 歲的演進圖譜。系統化圖紙將清楚標示：結構板材如何從初期的「防護欄」，透過隱藏式卡榫轉換為兒童期的「觸覺/音樂牆」，最終重組為學齡期的「置物架」。
+                    </p>
+                    <div class="mt-6 bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border-l-4 border-secondary shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-earth-asia text-secondary dark:text-yellow-500 mt-1 text-xl"></i>
+                        <div>
+                            <h5 class="font-bold text-secondary dark:text-yellow-500 mb-2 text-lg" data-i18n="case-eco-title">社會貢獻與減碳效益</h5>
+                            <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed" data-i18n="case2-eco-desc">長達 12 年以上的陪伴計畫，直接省去購買 4 件不同階段家具所產生的製造與運輸碳足跡。預估單組嬰兒床系統在生命週期內可減少 <strong>250kg CO2e</strong> 碳排放。這不僅是環境的勝利，更能替年輕家庭省下超過 $13,000 元的支出，大幅減輕現代社會的育兒經濟壓力，創造永續共好的居住型態。</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="impact" class="mb-12 max-w-6xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-green-700 transition-colors">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-green-800 dark:text-green-400"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="nav-impact">量化減碳儀表板（ESG 實質數據）</span></h2>
+        <section id="knowledge">
+            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-8 mt-12 text-primary dark:text-green-400 max-w-6xl mx-auto"><i class="fa-solid fa-book-open mr-2"></i><span data-i18n="nav-knowledge">專業計畫知識與框架</span></h2>
+            
+            <div class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-l-8 border-primary transition-colors max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-leaf mr-2"></i><span data-i18n="esg-title">ESG 生活產業消費模式</span></h3>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6" data-i18n="esg-desc">我們的設計核心在於 <strong>「E (Environment) - 減少不必要的浪費」</strong>。透過系統性的發展適配評估，讓每一次的空間改造與消費，都精準對接孩子的成長所需，實現永續居住美學。</p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg text-center">
+                        <div class="text-4xl text-green-700 dark:text-green-400 mb-3"><i class="fa-solid fa-recycle"></i></div>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reduce">源頭減量 (Reduce)</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reduce-desc">拒絕過度裝潢與一次性家具。我們針對孩子當下發展需求提供「空間處方箋」，避免盲目施工或購買造成的資源與金錢浪費。</p>
+                    </div>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg text-center">
+                        <div class="text-4xl text-yellow-600 dark:text-yellow-400 mb-3"><i class="fa-solid fa-arrows-rotate"></i></div>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-reuse">共享與循環 (Reuse)</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-reuse-desc">獨創模組化系統，讓家具能伴隨孩子成長「變形」。前階段的組件可無縫轉換為下階段的居家收納，落實產品生命週期的極大化。</p>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg text-center">
+                        <div class="text-4xl text-accent dark:text-orange-400 mb-3"><i class="fa-solid fa-bullseye"></i></div>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="esg-refuse">精準消費 (Refuse)</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm text-left" data-i18n="esg-refuse-desc">透過專業幼保評估，幫您篩選並拒絕「不需要的育兒神器」，將預算與地球資源保留給真正有助於孩童身心發展的核心環境配置。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="impact" class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-green-700 transition-colors max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-green-800 dark:text-green-400"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="nav-impact">量化減碳儀表板（ESG 實質數據）</span></h3>
                 <div class="flex flex-col md:flex-row gap-8 items-center">
                     <div class="w-full md:w-1/2">
                         <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4" data-i18n="impact-desc">我們用數據證明永續不只是口號。依據我們的影響力模型預估，當達到 <strong>1,000 戶家庭訂閱規模</strong>時，透過模組化延壽與源頭減廢，預計將產出極大的環境保護績效：</p>
@@ -184,7 +301,7 @@
                     </div>
                     <div class="w-full md:w-1/2 bg-green-50 dark:bg-green-900/40 p-6 rounded-lg text-center border border-green-200 dark:border-green-800 relative overflow-hidden">
                         <div class="absolute -right-4 -top-4 text-green-100 dark:text-green-800/50 text-9xl opacity-50"><i class="fa-solid fa-leaf"></i></div>
-                        <h3 class="text-xl font-bold mb-4 relative z-10 text-dark dark:text-white" data-i18n="impact-box-title">千戶訂閱影響力預估</h3>
+                        <h4 class="text-xl font-bold mb-4 relative z-10 text-dark dark:text-white" data-i18n="impact-box-title">千戶訂閱影響力預估</h4>
                         <div class="grid grid-cols-2 gap-4 relative z-10">
                             <div class="bg-white dark:bg-gray-800 p-4 rounded shadow-sm border dark:border-gray-600">
                                 <span class="block text-3xl font-extrabold text-green-600 dark:text-green-400">10 噸</span>
@@ -198,117 +315,31 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="science" class="mb-12 max-w-6xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-blue-800 transition-colors">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 dark:text-blue-400"><i class="fa-solid fa-microscope mr-2"></i><span data-i18n="nav-science">專業背書與國際科學框架</span></h2>
+            <div id="science" class="mb-12 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-blue-800 transition-colors max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-blue-900 dark:text-blue-400"><i class="fa-solid fa-microscope mr-2"></i><span data-i18n="nav-science">專業背書與國際科學框架</span></h3>
                 <p class="text-lg text-gray-700 dark:text-gray-300 mb-8" data-i18n="sci-desc">我們的每一項空間規劃與模組設計，背後皆具備嚴格的醫學、幼保與循環經濟理論支持：</p>
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-1">發展科學</h3>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-1">發展科學</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-1-desc"><strong>WHO 2022 兒童發展里程碑</strong><br>依據世界衛生組織公佈之大動作、精細動作、認知與社交發展標準，將不同年齡層所需之空間刺激寫入設計參數。</p>
                     </div>
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-2">幼保專業</h3>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-2">幼保專業</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-2-desc"><strong>Ayres 感覺統合理論</strong><br>透過觸覺板、攀爬架等模組化設計，精準針對孩童的前庭覺、本體覺提供發展適配的環境處方箋。</p>
                     </div>
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-3">永續循環</h3>
+                        <h4 class="font-bold text-xl mb-2 text-dark dark:text-white" data-i18n="sci-3">永續循環</h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="sci-3-desc"><strong>Ellen MacArthur 循環經濟框架</strong><br>徹底落實「使用權優於所有權」及「模組化可拆解設計」，讓材料在生物循環與工業循環中持續流通。</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="cases">
-            <h2 class="text-2xl md:text-3xl font-bold border-b-2 border-primary dark:border-green-600 pb-2 mb-6 max-w-6xl mx-auto"><i class="fa-solid fa-layer-group mr-2"></i><span data-i18n="case-title">模組化案例展示與出圖形式</span></h2>
-            
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col transition-colors max-w-6xl mx-auto">
-                <div class="flex flex-col lg:flex-row">
-                    <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
-                        <img src="p1cover.jpg" alt="洗手台空間" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
-                    </div>
-                    <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-main">主打案例</span>
-                            <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case1-title">可成長「共響洗手台系統」</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case1-desc">大人的洗手台小孩搆不到？讓洗手台跟小孩一起長大。從 2 歲用到 10 歲，使用完後可無縫轉換為居家收納或植栽槽。</p>
-                        <div class="bg-light dark:bg-gray-700 p-5 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-center mb-4 dark:text-white"><i class="fa-solid fa-chart-line mr-2"></i><span data-i18n="case1-chart">15 年生命週期成本對比</span></h4>
-                            <div class="w-full h-64 relative">
-                                <canvas id="costChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
-                    <h4 class="font-bold text-lg mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case1-draw">專業設計出圖形式</span></h4>
-                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
-                        <img src="p1.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
-                    </div>
-                    <p class="text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded border-l-4 border-primary" data-i18n="case1-draw-desc">
-                        <strong>設計出圖規範：</strong>包含完整 3D 爆炸圖、五金節點大樣圖（Detail）、階段轉換組裝說明書，以及詳盡的材料碳足跡計算表（對齊 ISO 14067）。確保系統在每一次變形時，皆有精準的結構力學計算做後盾。
-                    </p>
-                    <div class="mt-4 bg-green-50 dark:bg-green-900/30 p-4 rounded border-l-4 border-green-600 flex items-start gap-3">
-                        <i class="fa-solid fa-earth-asia text-green-600 mt-1 text-xl"></i>
-                        <div>
-                            <h5 class="font-bold text-green-800 dark:text-green-400 text-sm" data-i18n="case-eco-title">社會貢獻與減碳效益</h5>
-                            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="case1-eco-desc">透過共響模組的延續使用，避免了 3 次以上的產品汰換。經 LCA（生命週期評估）估算，單套洗手台系統約可減少 <strong>120kg CO2e</strong> 的碳排放量，等同於為地球種下約 10 棵樹的吸碳量，並能有效降低 60% 的大型廢棄物體積，徹底實踐源頭減廢。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col border-t-4 border-secondary transition-colors max-w-6xl mx-auto">
-                <div class="flex flex-col lg:flex-row">
-                    <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
-                        <img src="p2cover.jpg" alt="成長型多功能嬰兒床" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
-                    </div>
-                    <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="bg-secondary text-dark px-3 py-1 rounded-full text-xs font-bold" data-i18n="badge-ext">延伸案例</span>
-                            <h3 class="text-2xl font-bold text-dark dark:text-white" data-i18n="case2-title">0~12+歲「成長型多功能嬰兒床」</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6 text-base" data-i18n="case2-desc">從新生兒的安全包覆、幼童期的探索學習（結合多種感官探索牆），到學齡期的專屬沙發閱讀區。當孩子長大不再需要床鋪時，床體更可完全拆解，無縫重組為「成長紀錄牆」、「書架展示架」與「玩具收納箱」，徹底實踐零浪費的永續價值。</p>
-                        
-                        <div class="bg-light dark:bg-gray-700 p-5 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-center mb-4 dark:text-white"><i class="fa-solid fa-chart-pie mr-2"></i><span data-i18n="case2-chart">12 年以上生命週期成本對比</span></h4>
-                            <div class="w-full h-64 relative">
-                                <canvas id="costChartCrib"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
-                    <h4 class="font-bold text-lg mb-3 text-secondary dark:text-yellow-500"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case2-draw">結構力學與發展科學出圖形式</span></h4>
-                    
-                    <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
-                        <img src="p2.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
-                    </div>
-                    
-                    <p class="text-sm text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-gray-700 p-4 rounded border-l-4 border-secondary" data-i18n="case2-draw-desc">
-                        <strong>設計出圖規範：</strong>視覺化呈現 0-12 歲的演進圖譜。系統化圖紙將清楚標示：結構板材如何從初期的「防護欄」，透過隱藏式卡榫轉換為兒童期的「觸覺/音樂牆」，最終重組為學齡期的「置物架」。
-                    </p>
-                    
-                    <div class="mt-4 bg-orange-50 dark:bg-orange-900/30 p-4 rounded border-l-4 border-secondary flex items-start gap-3">
-                        <i class="fa-solid fa-earth-asia text-secondary dark:text-yellow-500 mt-1 text-xl"></i>
-                        <div>
-                            <h5 class="font-bold text-secondary dark:text-yellow-500 text-sm" data-i18n="case-eco-title">社會貢獻與減碳效益</h5>
-                            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="case2-eco-desc">長達 12 年以上的陪伴計畫，直接省去購買 4 件不同階段家具所產生的製造與運輸碳足跡。預估單組嬰兒床系統在生命週期內可減少 <strong>250kg CO2e</strong> 碳排放。這不僅是環境的勝利，更能替年輕家庭省下超過 $13,000 元的支出，大幅減輕現代社會的育兒經濟壓力，創造永續共好的居住型態。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="b2b" class="mb-12 max-w-6xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-gray-800 transition-colors">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-dark dark:text-white"><i class="fa-solid fa-handshake mr-2"></i><span data-i18n="nav-b2b">多層次市場門戶與商業韌性服務</span></h2>
+            <div id="b2b" class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-t-8 border-gray-800 transition-colors max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-dark dark:text-white"><i class="fa-solid fa-handshake mr-2"></i><span data-i18n="nav-b2b">多層次市場門戶與商業韌性服務</span></h3>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="font-bold text-xl mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-city mr-2"></i><span data-i18n="b2b-1">企業 ESG 與 B2B 合作專區</span></h3>
+                        <h4 class="font-bold text-xl mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-city mr-2"></i><span data-i18n="b2b-1">企業 ESG 與 B2B 合作專區</span></h4>
                         <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed" data-i18n="b2b-1-intro">本計畫不僅服務一般家長，我們更設計了專屬的機構方案，創造多贏的利益相關者生態圈：</p>
                         <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
                             <li class="bg-gray-50 dark:bg-gray-700 p-3 rounded border-l-4 border-primary" data-i18n="b2b-1-1"><strong>托嬰中心與幼兒園：</strong> 採購此系統作為強大的「親師溝通工具」與空間優化亮點，提升招生競爭力。</li>
@@ -317,10 +348,10 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 class="font-bold text-xl mb-4 text-accent dark:text-orange-400"><i class="fa-solid fa-tower-broadcast mr-2"></i><span data-i18n="b2b-2">斷網配套與「韌性設計」</span></h3>
+                        <h4 class="font-bold text-xl mb-4 text-accent dark:text-orange-400"><i class="fa-solid fa-tower-broadcast mr-2"></i><span data-i18n="b2b-2">斷網配套與「韌性設計」</span></h4>
                         <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed" data-i18n="b2b-2-intro">面對評審的壓力測試：「如果沒網路或 AI 該怎麼辦？」我們深知，科技只是輔助，溫暖的專業才是核心。</p>
                         <div class="bg-orange-50 dark:bg-orange-900/30 p-5 rounded-lg">
-                            <h4 class="font-bold text-dark dark:text-white mb-2" data-i18n="b2b-2-box">韌性服務模式 (Offline Contingency)</h4>
+                            <h5 class="font-bold text-dark dark:text-white mb-2" data-i18n="b2b-2-box">韌性服務模式 (Offline Contingency)</h5>
                             <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3" data-i18n="b2b-2-box-desc">我們的核心服務絕不完全依賴數位網路。除了線上儀表板，我們提供：</p>
                             <ul class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
                                 <li data-i18n="b2b-2-1"><strong>輕量紙本建議書：</strong> 評估完成後，將生成可列印的實體空間處方箋。</li>
@@ -477,8 +508,36 @@
 
                 <div id="tab-submission" class="designer-tab-content hidden">
                     <h3 class="text-2xl font-bold mb-6 text-primary dark:text-green-400 border-b dark:border-gray-700 pb-2"><i class="fa-solid fa-cloud-arrow-up mr-2"></i><span data-i18n="dsg-nav-2-3">專案繳件</span></h3>
-                    <div class="bg-light dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 text-center text-gray-500">
-                        上傳圖紙區塊
+                    <div class="bg-light dark:bg-gray-700 p-6 md:p-8 rounded-xl border border-gray-200 dark:border-gray-600">
+                        <form id="submissionForm">
+                            <div class="mb-5">
+                                <label class="block font-bold mb-2 text-dark dark:text-white">目標專案</label>
+                                <select class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:border-primary">
+                                    <option>林太太：玄關推車與收納系統 (執行中)</option>
+                                    <option>王先生：客廳遊戲區防撞與收納適配 (執行中)</option>
+                                </select>
+                            </div>
+                            <div class="mb-5">
+                                <label class="block font-bold mb-2 text-dark dark:text-white">繳交備註與文字說明</label>
+                                <textarea rows="5" placeholder="請填寫本次繳件的說明，例如：V1初版平面圖、模組組裝說明、材質變更確認..." class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:border-primary" required></textarea>
+                            </div>
+                            <div class="mb-8">
+                                <label class="block font-bold mb-2 text-dark dark:text-white">上傳設計圖 / PDF 報告</label>
+                                <div class="flex items-center justify-center w-full">
+                                    <label class="flex flex-col items-center justify-center w-full h-40 border-2 border-primary border-dashed rounded-lg cursor-pointer bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 transition duration-300">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <i class="fa-solid fa-cloud-arrow-up text-4xl text-primary mb-3"></i>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-bold text-primary dark:text-green-400">點擊選擇檔案</span> 或將檔案拖曳至此</p>
+                                            <p class="text-xs text-gray-400">支援 PDF, PNG, JPG (單檔最大限制 10MB)</p>
+                                        </div>
+                                        <input type="file" class="hidden" accept=".pdf, image/png, image/jpeg" multiple />
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" class="w-full bg-primary text-white font-bold text-lg py-4 rounded-lg hover:bg-green-800 transition flex justify-center items-center shadow-md">
+                                <i class="fa-solid fa-check-circle mr-2"></i>確認並送出繳件
+                            </button>
+                        </form>
                     </div>
                 </div>
             </section>
@@ -513,7 +572,7 @@
         const db = getFirestore(app);
 
         // =========================================
-        // JSON 字典檔 - 完整版
+        // JSON 字典檔
         // =========================================
         const i18nDict = {
             zh: {
@@ -573,8 +632,8 @@
                 "table-stage": "階段", "table-total": "總計花費", "stage1-1": "幼兒期", "stage1-2": "成長期", "stage1-3": "青少年", "stage1-4": "退役轉生",
                 "cost-21k": "約 $21,000", "cost-12k": "約 $12,000", "stage2-1": "0~2歲 (睡眠)", "stage2-2": "2~8歲 (學習)", "stage2-3": "8~12歲 (成長)", "stage2-4": "12歲+ (再利用)",
                 "cost-31k": "約 $31,000", "cost-18k": "約 $18,000",
-                "chart-ds1": "快消模式 / 傳統模式", "chart-ds2": "模組化系統 / 成長系統",
-                "chart1-lbl": ['幼兒期', '成長期', '青少年', '退役轉生'], "chart2-lbl": ['0~2歲', '2~8歲', '8~12歲', '12歲+']
+                "chart-ds1": "快消/傳統模式", "chart-ds2": "模組系統",
+                "chart1-lbl": ['幼兒期', '成長期', '青少年', '退役轉生'], "chart2-lbl": ['0~2歲(睡眠)', '2~8歲(學習)', '8~12歲(成長)', '12歲+(再利用)']
             },
             en: {
                 "nav-title": "Ark Development Project", "nav-cases": "Modules", "nav-knowledge": "Knowledge Framework", "nav-impact": "Carbon Impact", "nav-science": "Science Framework", "nav-b2b": "B2B Services", 
@@ -771,14 +830,16 @@
             }
         };
 
-        // 登入驗證邏輯
+        // =========================================
+        // 登入驗證邏輯 (包含 11/11 與 22/22)
+        // =========================================
         window.submitClientAuth = function() {
             const user = document.getElementById('clientUsername').value.trim();
             const pass = document.getElementById('clientPassword').value.trim();
             const errMsg = document.getElementById('clientErrorMsg');
             
             if (!isRegisterMode) {
-                // 客戶登入: 測試 22 / 22
+                // 登入模式：驗證測試帳號 22 / 22
                 if (user === '22' && pass === '22') {
                     localStorage.setItem('userRole', 'client'); 
                     localStorage.setItem('currentUsername', 'User_22'); 
@@ -791,6 +852,7 @@
                     errMsg.classList.remove('hidden');
                 }
             } else {
+                // 註冊模式：模擬成功
                 localStorage.setItem('userRole', 'client'); 
                 localStorage.setItem('currentUsername', user || 'NewUser'); 
                 window.closeClientModal(); 
@@ -805,7 +867,7 @@
             const pass = document.getElementById('designerPassword').value.trim();
             const errMsg = document.getElementById('designerLoginError');
             
-            // 設計師登入: 測試 11 / 11 或是 71101mi / 5462
+            // 驗證設計師帳號 11/11 或 71101mi/5462
             if((user === '71101mi' && pass === '5462') || (user === '11' && pass === '11')) {
                 localStorage.setItem('userRole', 'designer'); 
                 localStorage.setItem('currentUsername', user === '11' ? 'Designer_11' : 'Chief Architect'); 
@@ -835,6 +897,7 @@
 
             Chart.defaults.color = document.documentElement.classList.contains('dark') ? '#D1D5DB' : '#666';
 
+            // Chart 1
             const ctx1 = document.getElementById('costChart');
             if(ctx1) {
                 window.costChartInstance = new Chart(ctx1.getContext('2d'), {
@@ -850,6 +913,7 @@
                 });
             }
 
+            // Chart 2
             const ctx2 = document.getElementById('costChartCrib');
             if(ctx2) {
                 window.costChartCribInstance = new Chart(ctx2.getContext('2d'), {
