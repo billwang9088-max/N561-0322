@@ -114,7 +114,7 @@
             <div class="absolute inset-0 bg-dark bg-opacity-60"></div>
             <div class="relative z-10 text-light px-4">
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-wide" data-i18n="hero-title">幼兒家庭空間成長共創訂閱服務</h2>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-gray-200" data-i18n="hero-sub">
+                <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-gray-200" data-i18n="hero-subtitle">
                     我們不是傳統室內設計師。<br>我們是「幼保 × 建築」的兒童發展空間顧問。
                 </p>
             </div>
@@ -227,7 +227,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col transition-colors max-w-6xl mx-auto">
                 <div class="flex flex-col lg:flex-row">
                     <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
-                        <img src="src="s12.jpg"s" alt="浴室空間" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
+                        <img src="p1cover.jpg" alt="洗手台空間" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
                     </div>
                     <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
                         <div class="flex items-center gap-3 mb-2">
@@ -246,7 +246,7 @@
                 <div class="border-t-2 border-gray-100 dark:border-gray-700 p-6 md:p-8 bg-white dark:bg-gray-800">
                     <h4 class="font-bold text-lg mb-4 text-primary dark:text-green-400"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case1-draw">專業設計出圖形式</span></h4>
                     <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
-                        <img src="image_58d057.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
+                        <img src="p1.jpg" alt="洗手台設計出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
                     </div>
                     <p class="text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-4 rounded border-l-4 border-primary" data-i18n="case1-draw-desc">
                         <strong>設計出圖規範：</strong>包含完整 3D 爆炸圖、五金節點大樣圖（Detail）、階段轉換組裝說明書，以及詳盡的材料碳足跡計算表（對齊 ISO 14067）。確保系統在每一次變形時，皆有精準的結構力學計算做後盾。
@@ -264,7 +264,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12 flex flex-col border-t-4 border-secondary transition-colors max-w-6xl mx-auto">
                 <div class="flex flex-col lg:flex-row">
                     <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-6 border-b lg:border-b-0 lg:border-r dark:border-gray-600">
-                        <img src="image_594416 (3).jpg" alt="成長型多功能嬰兒床" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
+                        <img src="p2cover.jpg" alt="成長型多功能嬰兒床" class="object-contain w-full h-auto max-h-[350px] rounded shadow-sm">
                     </div>
                     <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center">
                         <div class="flex items-center gap-3 mb-2">
@@ -285,7 +285,7 @@
                     <h4 class="font-bold text-lg mb-3 text-secondary dark:text-yellow-500"><i class="fa-solid fa-pen-ruler mr-2"></i><span data-i18n="case2-draw">結構力學與發展科學出圖形式</span></h4>
                     
                     <div class="bg-gray-100 dark:bg-gray-900 rounded-lg flex justify-center p-4 mb-4 border border-gray-200 dark:border-gray-700 w-full">
-                        <img src="image_57f5f9.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
+                        <img src="p2.jpg" alt="嬰兒床轉換出圖" class="w-full h-auto object-contain max-h-[800px] rounded">
                     </div>
                     
                     <p class="text-sm text-gray-700 dark:text-gray-300 bg-orange-50 dark:bg-gray-700 p-4 rounded border-l-4 border-secondary" data-i18n="case2-draw-desc">
@@ -513,12 +513,12 @@
         const db = getFirestore(app);
 
         // =========================================
-        // JSON 字典檔 - 完整且不刪減
+        // JSON 字典檔 - 完整版
         // =========================================
         const i18nDict = {
             zh: {
                 "nav-title": "發展適配方舟計畫", "nav-cases": "模組案例", "nav-knowledge": "專業知識", "nav-impact": "量化減碳數據", "nav-science": "科學專業框架", "nav-b2b": "B2B與韌性服務", 
-                "nav-client-login": "客戶登入", "nav-designer-login": "設計師登入", "nav-login": "客戶登入/註冊", "nav-designer": "設計師登入", 
+                "nav-client-login": "客戶登入", "nav-designer-login": "設計師登入", "nav-login": "登入/註冊", "nav-designer": "設計師登入", 
                 "nav-submit": "我要提出需求", "nav-projects": "我的專案", "nav-workstation": "設計師工作站", "nav-logout": "登出", 
                 "btn-cancel": "取消", "btn-login": "登入", "btn-switch-reg": "還沒有帳號？點此註冊", "btn-start": "立即啟動計畫",
                 
@@ -771,16 +771,14 @@
             }
         };
 
-        // =========================================
-        // 登入驗證邏輯 (包含 11/11 與 22/22)
-        // =========================================
+        // 登入驗證邏輯
         window.submitClientAuth = function() {
             const user = document.getElementById('clientUsername').value.trim();
             const pass = document.getElementById('clientPassword').value.trim();
             const errMsg = document.getElementById('clientErrorMsg');
             
             if (!isRegisterMode) {
-                // 登入模式：驗證測試帳號 22 / 22
+                // 客戶登入: 測試 22 / 22
                 if (user === '22' && pass === '22') {
                     localStorage.setItem('userRole', 'client'); 
                     localStorage.setItem('currentUsername', 'User_22'); 
@@ -793,7 +791,6 @@
                     errMsg.classList.remove('hidden');
                 }
             } else {
-                // 註冊模式：模擬成功
                 localStorage.setItem('userRole', 'client'); 
                 localStorage.setItem('currentUsername', user || 'NewUser'); 
                 window.closeClientModal(); 
@@ -808,7 +805,7 @@
             const pass = document.getElementById('designerPassword').value.trim();
             const errMsg = document.getElementById('designerLoginError');
             
-            // 驗證設計師帳號 11/11 或 71101mi/5462
+            // 設計師登入: 測試 11 / 11 或是 71101mi / 5462
             if((user === '71101mi' && pass === '5462') || (user === '11' && pass === '11')) {
                 localStorage.setItem('userRole', 'designer'); 
                 localStorage.setItem('currentUsername', user === '11' ? 'Designer_11' : 'Chief Architect'); 
@@ -838,7 +835,6 @@
 
             Chart.defaults.color = document.documentElement.classList.contains('dark') ? '#D1D5DB' : '#666';
 
-            // Chart 1
             const ctx1 = document.getElementById('costChart');
             if(ctx1) {
                 window.costChartInstance = new Chart(ctx1.getContext('2d'), {
@@ -854,7 +850,6 @@
                 });
             }
 
-            // Chart 2
             const ctx2 = document.getElementById('costChartCrib');
             if(ctx2) {
                 window.costChartCribInstance = new Chart(ctx2.getContext('2d'), {
@@ -863,7 +858,7 @@
                         labels: i18nDict['zh']['chart2-lbl'],
                         datasets: [
                             { label: i18nDict['zh']['chart-ds1'], data: [6000, 14000, 26000, 31000], borderColor: '#EF4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 3, fill: true, tension: 0.3 },
-                            { label: i18nDict['zh']['chart-ds2'], data: [18000, 18000, 18000, 18000], borderColor: '#D0A97E', backgroundColor: 'rgba(208, 169, 126, 0.2)', borderWidth: 3, fill: true, tension: 0.3 }
+                            { label: i18nDict['zh']['chart-ds2'], data: [18000, 18000, 18000, 18000], borderColor: '#5C6E58', backgroundColor: 'rgba(92, 110, 88, 0.1)', borderWidth: 3, fill: true, tension: 0.3 }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false }
@@ -883,7 +878,10 @@
                     await addDoc(collection(db, "design_requests"), {
                         clientAccount: localStorage.getItem('currentUsername'),
                         subject: document.getElementById('reqSubject').value,
+                        kidsInfo: document.getElementById('reqKids').value,
+                        budget: document.getElementById('reqBudget').value,
                         details: document.getElementById('reqDetails').value,
+                        status: "open",
                         createdAt: serverTimestamp()
                     });
                     document.getElementById('successMsg').classList.remove('hidden');
